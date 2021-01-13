@@ -73,12 +73,12 @@ class Hero
     private $race;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $heightCM;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $weight;
 
@@ -86,6 +86,11 @@ class Hero
      * @ORM\Column(type="text")
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $alignment;
 
     public function getId(): ?int
     {
@@ -224,24 +229,24 @@ class Hero
         return $this;
     }
 
-    public function getHeightCM(): ?int
+    public function getHeightCM(): ?string
     {
         return $this->heightCM;
     }
 
-    public function setHeightCM(int $heightCM): self
+    public function setHeightCM(string $heightCM): self
     {
         $this->heightCM = $heightCM;
 
         return $this;
     }
 
-    public function getWeight(): ?int
+    public function getWeight(): ?string
     {
         return $this->weight;
     }
 
-    public function setWeight(int $weight): self
+    public function setWeight(string $weight): self
     {
         $this->weight = $weight;
 
@@ -256,6 +261,18 @@ class Hero
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getAlignment(): ?string
+    {
+        return $this->alignment;
+    }
+
+    public function setAlignment(string $alignment): self
+    {
+        $this->alignment = $alignment;
 
         return $this;
     }
