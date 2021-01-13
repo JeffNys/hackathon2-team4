@@ -9,6 +9,7 @@ class API
     public function hydratageBDD(): void
     {
         $superHeroApi = HttpClient::create();
+
         $idDansAPI = 1;
         $url = "https://www.superheroapi.com/api.php/3595089573919052/$idDansAPI";
         $reponse = $superHeroApi->request('GET', $url);

@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Services\API;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -24,7 +25,7 @@ class HomeController extends AbstractController
     public function api(): Response
     {
         // de Jeff, je vais faire la mise à jour de la BDD depuis l'API ici
-
+        API::hydratageBDD();
         return $this->render('home/api.html.twig', [
             'controller_name' => 'HomeController',
         ]);
