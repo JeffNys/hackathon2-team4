@@ -40,4 +40,15 @@ class HeroController extends AbstractController
             'gentils' => $gentils
         ]);
     }
+
+    /**
+     * @Route("/Hero/mechants", name="hero_mechants")
+     */
+    public function affichageMechants(HeroRepository $heroTable): Response
+    {
+        $mechants = $heroTable->findBy(['alignment' => 'bad']);
+        return $this->render('hero/mechants.html.twig', [
+            'mechants' => $mechants
+        ]);
+    }
 }

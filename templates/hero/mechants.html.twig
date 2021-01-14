@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MàJ API!{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Voici les mechants ✅</h1>
+
+    <ul>
+    {% for mechant in mechants %}
+        <li>{{ mechant.name }} - {{ mechant.publisher }} </li>
+    {% else %}
+        <li><em>la table est vide</em></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
