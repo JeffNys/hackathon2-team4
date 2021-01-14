@@ -5,31 +5,40 @@
 {% block body %}
 <h1 class="text-white bg-dark">{{ hero.name }}</h1>
 
-<a class="btn btn-success btn-lg" href="{{ path('hero_creation', {'id': hero.id }) }}">jouer avec {{ hero.name }}!</a>
 
-<h2 class="text-white bg-dark">Statistiques: </h2>
-<ul>
-    <li class="text-white bg-dark">intelligence: {{ hero.intelligence }} </li>
-    <li class="text-white bg-dark">force: {{ hero.strength }} </li>
-    <li class="text-white bg-dark">vitesse: {{ hero.speed }} </li>
-    <li class="text-white bg-dark">endurance: {{ hero.durability }} </li>
-    <li class="text-white bg-dark">puissance: {{ hero.power }} </li>
-    <li class="text-white bg-dark">combat: {{ hero.combat }} </li>
-</ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-white bg-dark">Statistiques: </h2>
+            <ul>
+                <li class="text-white bg-dark">intelligence: {{ hero.intelligence }} </li>
+                <li class="text-white bg-dark">force: {{ hero.strength }} </li>
+                <li class="text-white bg-dark">vitesse: {{ hero.speed }} </li>
+                <li class="text-white bg-dark">endurance: {{ hero.durability }} </li>
+                <li class="text-white bg-dark">puissance: {{ hero.power }} </li>
+                <li class="text-white bg-dark">combat: {{ hero.combat }} </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-white bg-dark">Caractéristiques</h2>
+            <ul>
+                <li class="text-white bg-dark">genre: {{ hero.gender }} </li>
+                <li class="text-white bg-dark">race: {{ hero.race }} </li>
+                <li class="text-white bg-dark">taille: {{ hero.heightCM }}</li>
+                <li class="text-white bg-dark">poids: {{ hero.weight }}  </li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <a class="btn btn-success btn-lg" href="{{ path('hero_creation', {'id': hero.id }) }}">jouer avec {{ hero.name }}!</a>
+    <div class="center">
+        <h2>
+            <span class="text-white bg-dark">Aperçu</span>
+        </h2>
+        <img src="{{ hero.image }}" alt="photo de {{ hero.name }} ">
+        <hr>
+    </div>
 
-<h2 class="text-white bg-dark">Caractéristiques</h2>
-<ul>
-    <li class="text-white bg-dark">genre: {{ hero.gender }} </li>
-    <li class="text-white bg-dark">race: {{ hero.race }} </li>
-    <li class="text-white bg-dark">taille: {{ hero.heightCM }} Cm</li>
-    <li class="text-white bg-dark">poids: {{ hero.weight }} Kg </li>
-</ul>
-
-<h2 class="text-white bg-dark">Aperçu</h2>
-
-<img src="{{ hero.image }}" alt="photo de {{ hero.name }} ">
-
-<hr>
 
 <a class="text-white bg-dark" href="{{ path('hero_gentils') }}">retour vers les gentils</a>
 <br>
