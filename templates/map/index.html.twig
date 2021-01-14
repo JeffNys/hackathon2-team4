@@ -17,7 +17,7 @@
 										<div class="tile-img">{{ map[x][y].name ?? ' '}}</div>
 										<div class="tile-name coords">{{ map[x][y].coordX }},{{ map[x][y].coordY }}</div>
 										{% if perso.coordonneesX == x and perso.coordonneesY == y %}
-											<img class="perso img-fluid" src="{{ perso.image }}" alt="perso"/>
+											<img class="perso img-perso" src="{{ perso.image }}" alt="perso"/>
 										{% endif %}
 									</div>
 								{% endif %}
