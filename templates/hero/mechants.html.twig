@@ -6,14 +6,17 @@
 <div>
     <h1 class="text-white bg-dark">Voici les mechants ✅</h1>
 
-    <ul>
+    <div class="container-fluid">
+    <div class="row index">
     {% for mechant in mechants %}
         <div class="col-lg-4 text-white">
-            <a class="text-white bg-dark" href="{{ path('hero_details', {'id': mechant.id }) }}"><li>{{ mechant.name }} - {{ mechant.publisher }} </li></a>
+            <a class="text-white bg-dark" href="{{ path('hero_details', {'id': mechant.id }) }}">
+                {{ mechant.name }} - {{ mechant.publisher }}
+            </a>
         </div>
     {% else %}
-        <li class="text-white bg-dark"><em>la table est vide</em></li>
+        <p><em>la table est vide</em></p>
     {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
