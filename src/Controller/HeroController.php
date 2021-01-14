@@ -36,8 +36,10 @@ class HeroController extends AbstractController
     public function affichageGentils(HeroRepository $heroTable): Response
     {
         $gentils = $heroTable->findBy(['alignment' => 'good']);
+        $alphabet = range('A', 'Z');
         return $this->render('hero/gentils.html.twig', [
-            'gentils' => $gentils
+            'gentils' => $gentils,
+            'alphabet' => $alphabet,
         ]);
     }
 

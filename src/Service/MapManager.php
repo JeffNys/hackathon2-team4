@@ -50,18 +50,16 @@ class MapManager
         return $treasureTile;
     }
 
-    /*public function foundObjects(Perso $perso)
+/*    public function foundObjects(Perso $perso)
     {
         if($tile = $this->tileRepository->findOneBy(
             ['coordX' => $perso->getCoordX(), 'coordY' => $perso->getCoordY()]
         )){
-            if($tile->getHasObject()){
-                $perso->setSac($tile->getObject());
                 return $tile->getHasObject();
             }
         }
         return false;
-    }
+    }*/
 
      public function fightEnnemy(Perso $perso)
     {
@@ -71,5 +69,5 @@ class MapManager
             $tile->getHasEnnemy();
         }
         return false;
-    }*/
+    }
 }

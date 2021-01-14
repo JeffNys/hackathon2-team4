@@ -38,12 +38,10 @@ class MapController extends AbstractController
         }
 
         $boat = $boatRepository->findOneBy([]);
-        $currentPosition = $tileRepository->findOneBy(['coordX' => $boat->getCoordX(), 'coordY' => $boat->getCoordY()]);
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
             'boat' => $boat,
-            'tile' => $currentPosition,
         ]);
     }
 }

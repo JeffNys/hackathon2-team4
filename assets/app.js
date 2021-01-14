@@ -10,4 +10,9 @@
 
 // start the Stimulus application
 import './styles/app.scss';
+require('./JS/clavier');
+
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 

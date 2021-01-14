@@ -9,7 +9,8 @@ body {
     text-align: center;
 }
 
-.hero span{
-    //-webkit-text-stroke: 4px red;
+.hero a:link{
+    text-decoration: none;
+    color: white;
     background-color: tomato;
 }

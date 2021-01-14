@@ -46,6 +46,11 @@ class Tile
      */
     private $hasEnnemy;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Objects::class)
+     */
+    private $objet;
+
 
     public function getId(): ?int
     {
@@ -120,6 +125,18 @@ class Tile
     public function setHasEnnemy(bool $hasEnnemy): self
     {
         $this->hasEnnemy = $hasEnnemy;
+
+        return $this;
+    }
+
+    public function getObjet(): ?Objects
+    {
+        return $this->objet;
+    }
+
+    public function setObjet(?Objects $objet): self
+    {
+        $this->objet = $objet;
 
         return $this;
     }
