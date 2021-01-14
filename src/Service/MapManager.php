@@ -39,7 +39,7 @@ class MapManager
 
     public function getRandomIsland()
     {
-        $tiles = $this->tileRepository->findBy(['type' => 'island']);
+        $tiles = $this->tileRepository->findBy(['type' => 'tuile']);
         foreach($tiles as $tile){
             $tile->setHasTreasure(false);
         }
