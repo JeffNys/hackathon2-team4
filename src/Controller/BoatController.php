@@ -58,10 +58,11 @@ class BoatController extends AbstractController
             $boat->setCoordX($boat->getCoordX() - 1);
         }
         if($mapManager->tileExits($boat->getCoordX(), $boat->getCoordY()) === true) {
-            $this->addFlash('success', $boat->getName().' move correctly');
             $entityManager->flush();
             /*if($mapManager->foundObjects($boat) === true) {
                 $this->addFlash('success', 'You found an object');
+            } elseif ($mapManager->fightEnnemy($boat)) {
+                $this->redirectToRoute('nom_de_la_route_pour_les_fights');
             }*/
         } else {
             $this->addFlash('danger', 'Tile doesn\'t exist, the boat can\'t move');

@@ -28,16 +28,19 @@ class MapController extends AbstractController
     /**
      * @Route("/map", name="map")
      */
-    public function displayMap(BoatRepository $boatRepository, TileRepository $tileRepository): Response
+    public function displayMap(BoatRepository $boatRepository, MapManager $mapManager): Response
     {
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();
+
 
         foreach ($tiles as $tile) {
             $map[$tile->getCoordX()][$tile->getCoordY()] = $tile;
         }
 
         $boat = $boatRepository->findOneBy([]);
+
+        $mapManager->placeObjet();
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
