@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
-use App\Repository\HeroRepository;
+use App\Entity\Perso;
 use App\Services\API;
+use App\Repository\HeroRepository;
+use App\Repository\PersoRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -61,5 +64,46 @@ class HeroController extends AbstractController
         return $this->render('hero/details.html.twig', [
             'hero' => $hero
         ]);
+    }
+
+    /**
+     * @Route("/Hero/{id}/creation", name="hero_creation")
+     */
+    public function creation(
+        int $id,
+        HeroRepository $heroTable,
+        EntityManagerInterface $em
+    ): Response {
+        // première étape, récupérer le héro brut
+        $hero = $heroTable->findOneBy(['id' => $id]);
+        // ensuite, il faut "créer un objet" personnage
+        // mais avant ça, il faut faire des calculs savant pour déterminer
+        // les points de vie, d'attaque etc...
+        $pointsAttaque = ($hero->getSpeed() + $hero->getStrength() + $hero->getCombat()) / 3;
+        $pointsEsquive = ($hero->getSpeed() + $hero->getIntelligence() + $hero->getCombat()) / 3;
+        $pointsDefense = ($hero->getDurability() + $hero->getStrength() + $hero->getPower()) / 3;
+        // allez, on crée l'objet
+        $perso = new Perso();
+        // et ajouter les infos à mettre dedans
+        $perso
+            ->setNom($hero->getName())
+            ->setIntelligence($hero->getIntelligence())
+            ->setForceMusculaire($hero->getStrength())
+            ->setVitesse($hero->getSpeed())
+            ->setEndurance($hero->getDurability())
+            ->setPuissance($hero->getPower())
+            ->setCombat($hero->getCombat())
+            ->setHero($hero)
+            ->setVie(100)
+            ->setPointsAttaque($pointsAttaque)
+            ->setPointsEsquive($pointsEsquive)
+            ->setPointsDefense($pointsDefense)
+            ->setCoordonneesX(0)
+            ->setCoordonneesY(0);
+        // ensuite on a plus qu'a le jeter dans la BDD
+        $em->persist($perso);
+        $em->flush();
+        dd($perso);
+        return $this->redirectToRoute('map');
     }
 }
