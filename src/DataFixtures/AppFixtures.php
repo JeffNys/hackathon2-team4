@@ -10,6 +10,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Boat;
+use App\Entity\Perso;
 use App\Entity\Tile;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -39,11 +40,11 @@ class AppFixtures extends Fixture
             }
         }
 
-        $boat = new Boat();
-        $boat->setCoordX(0);
-        $boat->setCoordY(0);
-        $boat->setName('Black Pearl');
-        $manager->persist($boat);
+        $perso = new Perso();
+        $perso->setCoordonneesX(0);
+        $perso->setCoordonneesX(0);
+        $perso->setNom('Yavuz');
+        $manager->persist($perso);
 
         $manager->flush();
     }

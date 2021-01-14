@@ -17,10 +17,10 @@ class MapController extends AbstractController
     /**
      * @Route("/start", name="start")
      */
-    public function start(BoatRepository $boatRepository, MapManager $mapManager)
+    public function start(PersoRepository $persoRepository, MapManager $mapManager)
     {
-        $boat = $boatRepository->findOneBy([]);
-        $boat->setCoordX(0)->setCoordY(0);
+        $perso = $persoRepository->findOneBy([]);
+        $perso->setCoordonneesX(0)->setCoordonneesY(0);
         $mapManager->getRandomIsland();
 
         return $this->redirectToRoute('map');
@@ -29,7 +29,7 @@ class MapController extends AbstractController
     /**
      * @Route("/map", name="map")
      */
-    public function displayMap(PersoRepository $persoRepository, TileRepository $tileRepository): Response
+    public function displayMap(PersoRepository $persoRepository, TileRepository $tileRepository, MapManager $mapManager): Response
     {
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();

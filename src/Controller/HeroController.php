@@ -75,8 +75,8 @@ class HeroController extends AbstractController
         int $id,
         HeroRepository $heroTable,
         PersoRepository $persoTable,
-        EntityManagerInterface $em
-    ): Response {
+        EntityManagerInterface $em): Response
+    {
         // première étape, récupérer le héro brut
         $hero = $heroTable->findOneBy(['id' => $id]);
         // ensuite, il faut "créer un objet" personnage
