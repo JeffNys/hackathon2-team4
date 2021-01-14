@@ -4,7 +4,7 @@
 
 {% block body %}
 <div>
-    <h1>Voici les gentils ✅</h1>
+    <h1 class="text-white bg-dark">Voici les gentils ✅</h1>
 
 {# futur code pour trier les gentils par la première lettre
     {% for letter in alphabet %}
@@ -16,10 +16,10 @@
     <div class="row index">
         {% for gentil in gentils %}
             <div class="col-lg-4 text-white">
-                <a href="{{ path('hero_details', {'id': gentil.id }) }}"> {{ gentil.name }} - {{ gentil.publisher }}</a>
+                <a class="text-white bg-dark" href="{{ path('hero_details', {'id': gentil.id }) }}"> {{ gentil.name }} - {{ gentil.publisher }}</a>
             </div>
         {% else %}
-            <p><em>la table est vide</em></p>
+            <p class="text-white bg-dark"><em>la table est vide</em></p>
         {% endfor %}
     </div>
 </div>

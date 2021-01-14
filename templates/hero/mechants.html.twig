@@ -4,15 +4,15 @@
 
 {% block body %}
 <div>
-    <h1>Voici les mechants ✅</h1>
+    <h1 class="text-white bg-dark">Voici les mechants ✅</h1>
 
     <ul>
     {% for mechant in mechants %}
         <div class="col-lg-4 text-white">
-            <a href="{{ path('hero_details', {'id': mechant.id }) }}"><li>{{ mechant.name }} - {{ mechant.publisher }} </li></a>
+            <a class="text-white bg-dark" href="{{ path('hero_details', {'id': mechant.id }) }}"><li>{{ mechant.name }} - {{ mechant.publisher }} </li></a>
         </div>
     {% else %}
-        <li><em>la table est vide</em></li>
+        <li class="text-white bg-dark"><em>la table est vide</em></li>
     {% endfor %}
     </ul>
 </div>
