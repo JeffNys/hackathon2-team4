@@ -19,12 +19,12 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $tiles = [
-            ['sea', 'sea', 'sea', 'sea', 'sea', 'island', 'sea', 'sea', 'sea', 'port', 'sea', 'sea'],
-            ['sea', 'port', 'sea', 'island', 'sea', 'sea', 'sea', 'sea', 'sea', 'sea', 'island', 'sea'],
-            ['sea', 'sea', 'sea', 'sea', 'sea', 'sea', 'sea', 'sea', 'island', 'sea', 'sea', 'sea'],
-            ['sea', 'island', 'sea', 'sea', 'island', 'sea', 'sea', 'sea', 'sea', 'sea', 'sea', 'sea'],
-            ['sea', 'sea', 'sea', 'sea', 'sea', 'sea', 'sea', 'island', 'sea', 'sea', 'port', 'sea'],
-            ['island', 'sea', 'sea', 'sea', 'port', 'sea', 'sea', 'sea', 'sea', 'sea', 'sea', 'island'],
+            ['tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile'],
+            ['tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile'],
+            ['tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile'],
+            ['tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile'],
+            ['tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile'],
+            ['tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile', 'tuile'],
         ];
 
         foreach ($tiles as $y => $line) {
@@ -33,6 +33,8 @@ class AppFixtures extends Fixture
                 $tile->setType($type);
                 $tile->setCoordX($x);
                 $tile->setCoordY($y);
+                $tile->setHasEnnemy(false);
+                $tile->setHasObject(false);
                 $manager->persist($tile);
             }
         }

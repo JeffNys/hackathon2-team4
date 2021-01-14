@@ -51,16 +51,21 @@
     opacity: 0.7;
 }
 
-.sea {
-    background-image: url('../images/sea.png');
+/*.sea {
+    background-image: url('../images/herbe.jpg');
 }
 
 .port {
-    background-image: url('../images/port.png');
+    background-image: url('../images/eau.jpg');
 }
 
 .island {
-    background-image: url('../images/island.png');
+    background-image: url('../images/montagne.jpg');
+}*/
+
+.tile-img {
+    background-image: url('../images/cadre.jpg');
+    opacity: 0;
 }
 
 @keyframes myBoat {
@@ -82,7 +87,7 @@
 }
 
 .map {
-    background-image: url('../images/map.jpg');
+    background-image: url('../images/carte.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     padding: 1em;
@@ -126,5 +131,10 @@ h2 {
 }
 
 .west {
-    grid-area: 2 / 1 / 2 / 3;
+    grid-area: 2 / 1 / 2 / 2;
+}
+
+button {
+    background: none;
+    border: none;
 }
