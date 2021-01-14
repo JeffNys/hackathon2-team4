@@ -26,12 +26,12 @@ class ArmesFixtures extends Fixture
             'caractéristique' => 'pointsDefense',
         ],
         'Gant en cuir' => [
-            'image' => 'https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/22/Potion_of_Leaping_JE1_BE1.png/revision/latest?cb=20200108004444',
+            'image' => 'https://images-na.ssl-images-amazon.com/images/I/71xXa9w4yQL._AC_SL1200_.jpg',
             'puissance' => 2,
             'caractéristique' => 'pointsDefense',
         ],
         'Bouclier standard' => [
-            'image' => 'https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/22/Potion_of_Leaping_JE1_BE1.png/revision/latest?cb=20200108004444',
+            'image' => 'https://www.merlin-pinpin.fr/9193-thickbox_default/bouclier-de-chevalier-bleu.jpg',
             'puissance' => 5,
             'caractéristique' => 'pointsDefense',
         ],
@@ -41,7 +41,7 @@ class ArmesFixtures extends Fixture
             'caractéristique' => 'pointsEsquive',
         ],
         'Anneau d\'intuition' => [
-            'image' => 'https://static.wikia.nocookie.net/marvelstudios/images/3/32/Mind_Stone-Clean.png/revision/latest/scale-to-width-down/280?cb=20160626122900&path-prefix=fr',
+            'image' => 'https://cdn.shopify.com/s/files/1/1632/7977/products/anneau-dhumeur_2000x.jpg?v=1571285957',
             'puissance' => 10,
             'caractéristique' => 'pointsEsquive',
         ],
