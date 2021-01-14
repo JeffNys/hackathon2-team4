@@ -36,6 +36,16 @@ class Tile
      */
     private $hasTreasure = false;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hasObject;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hasEnnemy;
+
 
     public function getId(): ?int
     {
@@ -86,6 +96,30 @@ class Tile
     public function setHasTreasure(bool $hasTreasure): self
     {
         $this->hasTreasure = $hasTreasure;
+
+        return $this;
+    }
+
+    public function getHasObject(): ?bool
+    {
+        return $this->hasObject;
+    }
+
+    public function setHasObject(bool $hasObject): self
+    {
+        $this->hasObject = $hasObject;
+
+        return $this;
+    }
+
+    public function getHasEnnemy(): ?bool
+    {
+        return $this->hasEnnemy;
+    }
+
+    public function setHasEnnemy(bool $hasEnnemy): self
+    {
+        $this->hasEnnemy = $hasEnnemy;
 
         return $this;
     }

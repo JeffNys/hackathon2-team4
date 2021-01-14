@@ -60,8 +60,8 @@ class BoatController extends AbstractController
         if($mapManager->tileExits($boat->getCoordX(), $boat->getCoordY()) === true) {
             $this->addFlash('success', $boat->getName().' move correctly');
             $entityManager->flush();
-            if($mapManager->checkTreasure($boat) === true) {
-                $this->addFlash('success', 'You found the treasure');
+            if($mapManager->foundObjects($boat) === true) {
+                $this->addFlash('success', 'You found an object');
             }
         } else {
             $this->addFlash('danger', 'Tile doesn\'t exist, the boat can\'t move');
