@@ -16,9 +16,15 @@
                                     <div class="tile col-1 {{ map[x][y].type }}">
                                         <div class="tile-img">{{ map[x][y].name ?? ' '}}</div>
                                         <div class="tile-name coords">{{ map[x][y].coordX }},{{ map[x][y].coordY }}</div>
+<<<<<<< HEAD
                                         {% if boat.coordX == x and boat.coordY == y %}
                                             <img class="boat img-fluid" src="{{ asset('build/images/hulk.jpg') }}"
                                                  alt="boat"/>
+=======
+                                        {% if perso.coordonneesX == x and perso.coordonneesY == y %}
+                                            <img class="perso img-fluid" src="{{ asset('build/hulk.jpg') }}"
+                                                 alt="perso"/>
+>>>>>>> 3cc94c9af28b1e539189f3db70cc3a9820841be0
                                         {% endif %}
                                     </div>
                                 {% endif %}
@@ -30,36 +36,36 @@
             <div class="col-md-2">
                 <div class="infos">
                     <h2>Information</h2>
-                    <h3> {{ boat.name }}:</h3>
-                    <p> Position X: {{ boat.coordX }}</p>
-                    <p> Position Y: {{ boat.coordY }}</p>
+                    <h3> {{ perso.nom }}:</h3>
+                    <p> Position X: {{ perso.coordonneesX }}</p>
+                    <p> Position Y: {{ perso.coordonneesY }}</p>
                 </div>
 
                 <h2>Navigation</h2>
                 <div class="navigation">
                     <button id="north" class="north">
-                        <a  href="{{ path('boatDirection', {'direction': 'N'}) }}">
+                        <a  href="{{ path('persoDirection', {'direction': 'N'}) }}">
                             <img src="{{ asset('build/images/north.png') }}" alt="North" >
                         </a>
                     </button>
                     <button id="west" class="west">
-                        <a  href="{{ path('boatDirection', {'direction': 'W'}) }}">
+                        <a  href="{{ path('persoDirection', {'direction': 'W'}) }}">
                             <img src="{{ asset('build/images/west.png') }}" alt="West" >
                         </a>
                     </button>
                     <button id="east" class="east">
-                        <a  href="{{ path('boatDirection', {'direction': 'E'}) }}">
+                        <a  href="{{ path('persoDirection', {'direction': 'E'}) }}">
                             <img src="{{ asset('build/images/east.png') }}" alt="East" >
                         </a>
                     </button>
                     <button id="south" class="south">
-                        <a  href="{{ path('boatDirection', {'direction': 'S'}) }}">
+                        <a  href="{{ path('persoDirection', {'direction': 'S'}) }}">
                             <img src="{{ asset('build/images/south.png') }}" alt="South" >
                         </a>
                     </button>
-                    {#<a class="west" href="{{ path('boatDirection', {'direction': 'W'}) }}"><img src="{{ asset('build/images/west.png') }}" alt="West" ></a>
-                    <a class="east" href="{{ path('boatDirection', {'direction': 'E'}) }}"><img src="{{ asset('build/images/east.png') }}" alt="East" ></a>
-                    <a class="south" href="{{ path('boatDirection', {'direction': 'S'}) }}"><img src="{{ asset('build/images/south.png') }}" alt="South" ></a>
+                    {#<a class="west" href="{{ path('persoDirection', {'direction': 'W'}) }}"><img src="{{ asset('build/images/west.png') }}" alt="West" ></a>
+                    <a class="east" href="{{ path('persoDirection', {'direction': 'E'}) }}"><img src="{{ asset('build/images/east.png') }}" alt="East" ></a>
+                    <a class="south" href="{{ path('persoDirection', {'direction': 'S'}) }}"><img src="{{ asset('build/images/south.png') }}" alt="South" ></a>
                 #}</div>
             </div>
         </div>

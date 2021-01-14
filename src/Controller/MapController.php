@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use App\Repository\TileRepository;
+use App\Entity\Tile;
 use App\Service\MapManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\BoatRepository;
+use App\Repository\TileRepository;
+use App\Repository\PersoRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Tile;
-use App\Repository\BoatRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MapController extends AbstractController
 {
@@ -28,7 +29,11 @@ class MapController extends AbstractController
     /**
      * @Route("/map", name="map")
      */
+<<<<<<< HEAD
     public function displayMap(BoatRepository $boatRepository, MapManager $mapManager): Response
+=======
+    public function displayMap(PersoRepository $persoRepository, TileRepository $tileRepository): Response
+>>>>>>> 3cc94c9af28b1e539189f3db70cc3a9820841be0
     {
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();
@@ -38,13 +43,13 @@ class MapController extends AbstractController
             $map[$tile->getCoordX()][$tile->getCoordY()] = $tile;
         }
 
-        $boat = $boatRepository->findOneBy([]);
+        $perso = $persoRepository->findOneBy([]);
 
         $mapManager->placeObjet();
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
-            'boat' => $boat,
+            'perso' => $perso,
         ]);
     }
 }
