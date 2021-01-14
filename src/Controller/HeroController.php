@@ -51,4 +51,15 @@ class HeroController extends AbstractController
             'mechants' => $mechants
         ]);
     }
+
+    /**
+     * @Route("/Hero/{id}/détails", name="hero_details")
+     */
+    public function voirHero(int $id, HeroRepository $heroTable): Response
+    {
+        $hero = $heroTable->findOneBy(['id' => $id]);
+        return $this->render('hero/details.html.twig', [
+            'hero' => $hero
+        ]);
+    }
 }
