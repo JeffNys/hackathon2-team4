@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MàJ API!{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Voici les mechants ✅</h1>
+
+    <ul>
+    {% for mechant in mechants %}
+        <div class="col-lg-4 text-white">
+            <a href="{{ path('hero_details', {'id': mechant.id }) }}"><li>{{ mechant.name }} - {{ mechant.publisher }} </li></a>
+        </div>
+    {% else %}
+        <li><em>la table est vide</em></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

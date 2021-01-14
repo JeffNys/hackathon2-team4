@@ -40,4 +40,26 @@ class HeroController extends AbstractController
             'gentils' => $gentils
         ]);
     }
+
+    /**
+     * @Route("/Hero/mechants", name="hero_mechants")
+     */
+    public function affichageMechants(HeroRepository $heroTable): Response
+    {
+        $mechants = $heroTable->findBy(['alignment' => 'bad']);
+        return $this->render('hero/mechants.html.twig', [
+            'mechants' => $mechants
+        ]);
+    }
+
+    /**
+     * @Route("/Hero/{id}/détails", name="hero_details")
+     */
+    public function voirHero(int $id, HeroRepository $heroTable): Response
+    {
+        $hero = $heroTable->findOneBy(['id' => $id]);
+        return $this->render('hero/details.html.twig', [
+            'hero' => $hero
+        ]);
+    }
 }
