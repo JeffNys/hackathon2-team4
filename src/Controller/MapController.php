@@ -29,11 +29,7 @@ class MapController extends AbstractController
     /**
      * @Route("/map", name="map")
      */
-<<<<<<< HEAD
-    public function displayMap(BoatRepository $boatRepository, MapManager $mapManager): Response
-=======
     public function displayMap(PersoRepository $persoRepository, TileRepository $tileRepository): Response
->>>>>>> 3cc94c9af28b1e539189f3db70cc3a9820841be0
     {
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();
