@@ -8,7 +8,9 @@
 
     <ul>
     {% for mechant in mechants %}
-        <li>{{ mechant.name }} - {{ mechant.publisher }} </li>
+        <div class="col-lg-4 text-white">
+            <a href="{{ path('hero_details', {'id': mechant.id }) }}"><li>{{ mechant.name }} - {{ mechant.publisher }} </li></a>
+        </div>
     {% else %}
         <li><em>la table est vide</em></li>
     {% endfor %}

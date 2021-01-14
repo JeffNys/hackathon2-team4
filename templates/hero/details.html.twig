@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ hero.name }}{% endblock %}
+
+{% block body %}
+<h1>{{ hero.name }}</h1>
+
+<h2>Statistiques: </h2>
+<ul>
+    <li class="text-white">intelligence: {{ hero.intelligence }} </li>
+    <li class="text-white">force: {{ hero.strength }} </li>
+    <li class="text-white">vitesse: {{ hero.speed }} </li>
+    <li class="text-white">endurence: {{ hero.durability }} </li>
+    <li class="text-white">puissance: {{ hero.power }} </li>
+    <li class="text-white">combat: {{ hero.combat }} </li>
+</ul>
+
+<h2>Caractéristiques</h2>
+<ul>
+    <li class="text-white">genre: {{ hero.gender }} </li>
+    <li class="text-white">race: {{ hero.race }} </li>
+    <li class="text-white">taille: {{ hero.heightCM }} Cm</li>
+    <li class="text-white">poids: {{ hero.weight }} Kg </li>
+</ul>
+
+<h2>Aperçu</h2>
+
+<img src="{{ hero.image }}" alt="photo de {{ hero.name }} ">
+
+<hr>
+
+<a href="{{ path('hero_gentils') }}">retour vers les gentils</a>
+<br>
+<a href="{{ path('hero_mechants') }}">retour vers les mechants</a>
+{% endblock %}
