@@ -1,67 +1,72 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container-fluid">
-        <h1>Map</h1>
-        <div class="row">
-            <div class="col-md-10">
-                <div class="map">
-                    {% if map is empty %}
-                        <div class="alert alert-warning">You are still on the firm ground, you have to load fixtures first !</div>
-                    {% endif %}
-                    {% for y in 0..6 %}
-                        <div class="row">
-                            {% for x in 0..12 %}
-                                {% if map[x][y] is defined %}
-                                    <div class="tile col-1 {{ map[x][y].type }}">
-                                        <div class="tile-img">{{ map[x][y].name ?? ' '}}</div>
-                                        <div class="tile-name coords">{{ map[x][y].coordX }},{{ map[x][y].coordY }}</div>
-                                        {% if perso.coordonneesX == x and perso.coordonneesY == y %}
-                                            <img class="perso img-fluid" src="{{ asset('build/hulk.jpg') }}"
-                                                 alt="perso"/>
-                                        {% endif %}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="infos">
-                    <h2>Information</h2>
-                    <h3> {{ perso.nom }}:</h3>
-                    <p> Position X: {{ perso.coordonneesX }}</p>
-                    <p> Position Y: {{ perso.coordonneesY }}</p>
-                </div>
+	<div class="container-fluid">
+		<h1>Map</h1>
+		<div class="row">
+			<div class="col-md-10">
+				<div class="map">
+					{% if map is empty %}
+						<div class="alert alert-warning">You are still on the firm ground, you have to load fixtures first !</div>
+					{% endif %}
+					{% for y in 0..6 %}
+						<div class="row">
+							{% for x in 0..12 %}
+								{% if map[x][y] is defined %}
+									<div class="tile col-1 {{ map[x][y].type }}">
+										<div class="tile-img">{{ map[x][y].name ?? ' '}}</div>
+										<div class="tile-name coords">{{ map[x][y].coordX }},{{ map[x][y].coordY }}</div>
+										{% if perso.coordonneesX == x and perso.coordonneesY == y %}
+											<img class="perso img-fluid" src="{{ perso.image }}" alt="perso"/>
+										{% endif %}
+									</div>
+								{% endif %}
+							{% endfor %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="infos">
+					<h2>Information</h2>
+					<h3>
+						{{ perso.nom }}:</h3>
+					<p>
+						Position X:
+						{{ perso.coordonneesX }}</p>
+					<p>
+						Position Y:
+						{{ perso.coordonneesY }}</p>
+				</div>
 
-                <h2>Navigation</h2>
-                <div class="navigation">
-                    <button id="north" class="north">
-                        <a  href="{{ path('persoDirection', {'direction': 'N'}) }}">
-                            <img src="{{ asset('build/images/north.png') }}" alt="North" >
-                        </a>
-                    </button>
-                    <button id="west" class="west">
-                        <a  href="{{ path('persoDirection', {'direction': 'W'}) }}">
-                            <img src="{{ asset('build/images/west.png') }}" alt="West" >
-                        </a>
-                    </button>
-                    <button id="east" class="east">
-                        <a  href="{{ path('persoDirection', {'direction': 'E'}) }}">
-                            <img src="{{ asset('build/images/east.png') }}" alt="East" >
-                        </a>
-                    </button>
-                    <button id="south" class="south">
-                        <a  href="{{ path('persoDirection', {'direction': 'S'}) }}">
-                            <img src="{{ asset('build/images/south.png') }}" alt="South" >
-                        </a>
-                    </button>
-                    {#<a class="west" href="{{ path('persoDirection', {'direction': 'W'}) }}"><img src="{{ asset('build/images/west.png') }}" alt="West" ></a>
-                    <a class="east" href="{{ path('persoDirection', {'direction': 'E'}) }}"><img src="{{ asset('build/images/east.png') }}" alt="East" ></a>
-                    <a class="south" href="{{ path('persoDirection', {'direction': 'S'}) }}"><img src="{{ asset('build/images/south.png') }}" alt="South" ></a>
-                #}</div>
-            </div>
-        </div>
-    </div>
+				<h2>Navigation</h2>
+				<div class="navigation">
+					<button id="north" class="north">
+						<a href="{{ path('persoDirection', {'direction': 'N'}) }}">
+							<img src="{{ asset('build/images/north.png') }}" alt="North">
+						</a>
+					</button>
+					<button id="west" class="west">
+						<a href="{{ path('persoDirection', {'direction': 'W'}) }}">
+							<img src="{{ asset('build/images/west.png') }}" alt="West">
+						</a>
+					</button>
+					<button id="east" class="east">
+						<a href="{{ path('persoDirection', {'direction': 'E'}) }}">
+							<img src="{{ asset('build/images/east.png') }}" alt="East">
+						</a>
+					</button>
+					<button id="south" class="south">
+						<a href="{{ path('persoDirection', {'direction': 'S'}) }}">
+							<img src="{{ asset('build/images/south.png') }}" alt="South">
+						</a>
+					</button>
+					{#<a class="west" href="{{ path('persoDirection', {'direction': 'W'}) }}"><img src="{{ asset('build/images/west.png') }}" alt="West" ></a>
+																				                    <a class="east" href="{{ path('persoDirection', {'direction': 'E'}) }}"><img src="{{ asset('build/images/east.png') }}" alt="East" ></a>
+																				                    <a class="south" href="{{ path('persoDirection', {'direction': 'S'}) }}"><img src="{{ asset('build/images/south.png') }}" alt="South" ></a>
+																				                #}
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

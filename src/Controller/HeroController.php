@@ -90,6 +90,7 @@ class HeroController extends AbstractController
         // et ajouter les infos à mettre dedans
         $perso
             ->setNom($hero->getName())
+            ->setImage($hero->getImage())
             ->setIntelligence($hero->getIntelligence())
             ->setForceMusculaire($hero->getStrength())
             ->setVitesse($hero->getSpeed())

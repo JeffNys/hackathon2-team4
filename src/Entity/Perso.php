@@ -88,6 +88,11 @@ class Perso
      */
     private $coordonneesY;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -257,6 +262,18 @@ class Perso
     public function setCoordonneesY(int $coordonneesY): self
     {
         $this->coordonneesY = $coordonneesY;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
