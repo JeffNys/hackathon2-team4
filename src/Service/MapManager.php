@@ -50,6 +50,20 @@ class MapManager
         return $treasureTile;
     }
 
+    public function placeObjet()
+    {
+        $tuiles = $this->tileRepository->findAll();
+        $suppFirst = array_shift($tuiles);
+
+        $objetTuile = array_rand($tuiles, 3);
+        foreach ( $objetTuile as $objet){
+            $tuiles[$objet]->setHasObject(true);
+            $this->entityManager->flush();
+        }
+
+        return $objetTuile;
+    }
+
 /*    public function foundObjects(Perso $perso)
     {
         if($tile = $this->tileRepository->findOneBy(
@@ -66,7 +80,7 @@ class MapManager
         if($tile = $this->tileRepository->findOneBy(
             ['coordX' => $perso->getCoordX(), 'coordY' => $perso->getCoordY()]
         )){
-            $tile->getHasEnnemy();
+            return $tile->getHasEnnemy();
         }
         return false;
     }

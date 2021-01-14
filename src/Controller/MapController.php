@@ -34,11 +34,14 @@ class MapController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $tiles = $em->getRepository(Tile::class)->findAll();
 
+
         foreach ($tiles as $tile) {
             $map[$tile->getCoordX()][$tile->getCoordY()] = $tile;
         }
 
         $perso = $persoRepository->findOneBy([]);
+
+        $mapManager->placeObjet();
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
