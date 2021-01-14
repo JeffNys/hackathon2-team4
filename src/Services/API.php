@@ -90,7 +90,7 @@ class API
                 if ("error" == $contenu['response']) {
                     $end = true;
                 }
-                dump($idDansAPI);
+                //dump($idDansAPI);
             }
 
             // on va aussi se prémunir contre les boucles infini, petite précaution...
