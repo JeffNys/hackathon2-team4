@@ -37,6 +37,7 @@ class API
                 $contenu = $reponse->toArray();
                 // on converti le JSON en un tableau PHP
                 // ici on a un tableau avec notre superhero
+                // dd($contenu);
                 // on va d'abord tester si le héro est déjà dans la base
                 $heroExistant = $this->em->getRepository(Hero::class)->findOneBy(['id_api' => $idDansAPI]);
                 // on va tester si on a suffisament d'infos sur notre héro pour le mettre dans la BDD
