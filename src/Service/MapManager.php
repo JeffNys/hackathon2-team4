@@ -50,13 +50,26 @@ class MapManager
         return $treasureTile;
     }
 
-    public function checkTreasure(Boat $boat)
+    /*public function foundObjects(Perso $perso)
     {
-        if($boat->getCoordX() === $this->getRandomIsland()->getCoordX() &&
-            $boat->getCoordY() === $this->getRandomIsland()->getCoordY()) {
-            return true;
-        } else {
-            return false;
+        if($tile = $this->tileRepository->findOneBy(
+            ['coordX' => $perso->getCoordX(), 'coordY' => $perso->getCoordY()]
+        )){
+            if($tile->getHasObject()){
+                $perso->setSac($tile->getObject());
+                return $tile->getHasObject();
+            }
         }
+        return false;
     }
+
+     public function fightEnnemy(Perso $perso)
+    {
+        if($tile = $this->tileRepository->findOneBy(
+            ['coordX' => $perso->getCoordX(), 'coordY' => $perso->getCoordY()]
+        )){
+            $tile->getHasEnnemy();
+        }
+        return false;
+    }*/
 }
