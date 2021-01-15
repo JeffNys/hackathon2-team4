@@ -16,8 +16,9 @@ class MapController extends AbstractController
     /**
      * @Route("/start", name="start")
      */
-    public function start(PersoRepository $persoRepository, MapManager $mapManager)
+    public function start(PersoRepository $persoRepository, MapManager $mapManager, TileRepository $tileRepository)
     {
+        $tileRepository->removeAll();
         $perso = $persoRepository->findOneBy([]);
         $perso->setCoordonneesX(0)->setCoordonneesY(0);
         $mapManager->placeObjets();

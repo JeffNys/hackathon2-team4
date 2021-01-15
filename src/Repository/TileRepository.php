@@ -19,32 +19,26 @@ class TileRepository extends ServiceEntityRepository
         parent::__construct($registry, Tile::class);
     }
 
-    // /**
-    //  * @return Tile[] Returns an array of Tile objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function removeAll(): void
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+        $this->createQueryBuilder('t')
+            ->update()
+            ->set('t.hasObject', ':false')
+            ->setParameter('false', false)
+            ->set('t.objet', ':null')
+            ->setParameter('null', null)
+            ->set('t.hasArmes', ':false')
+            ->setParameter('false', false)
+            ->set('t.arme', ':null')
+            ->setParameter('null', null)
+            ->set('t.hasPieges', ':false')
+            ->setParameter('false', false)
+            ->set('t.piege', ':null')
+            ->setParameter('null', null)
+            ->set('t.hasEnnemy', ':false')
+            ->setParameter('false', false)
             ->getQuery()
-            ->getResult()
-        ;
+            ->execute();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Tile
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
