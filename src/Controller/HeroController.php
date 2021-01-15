@@ -99,9 +99,9 @@ class HeroController extends AbstractController
             ->setCombat($hero->getCombat())
             ->setHero($hero)
             ->setVie(100)
-            ->setPointsAttaque($pointsAttaque)
-            ->setPointsEsquive($pointsEsquive)
-            ->setPointsDefense($pointsDefense)
+            ->setPointsAttaque($hero->getStrength(), $hero->getSpeed(), $hero->getCombat())
+            ->setPointsEsquive($hero->getSpeed(), $hero->getIntelligence(), $hero->getCombat())
+            ->setPointsDefense($hero->getDurability(), $hero->getStrength(), $hero->getPower())
             ->setCoordonneesX(0)
             ->setCoordonneesY(0);
         // afin d'éviter les déconvenus, hop, on vide la table des persos
