@@ -5,20 +5,32 @@
 
 {% block body %}
 
-
 	<h1>Gestion de la base Héro</h1>
 
 	<h2>Mettre à jour la base de donnée depuis l'API</h2>
 
-	<p>dans cette opération, vous allez scrapper toutes les infos depuis le site superheroapi.com
-		et les placer dans la base de données Héro</p>
-	<p>attention, cette opération prend facilement 5 longues minutes</p>
-	<a href="{{ path('hero_api') }}">mettre à jour la BDD</a>
-	<hr>
+	<div class="container-fluid hero">
+		<div class="row">
+			<div class="col-md-6 offset-3">
+				<p><span class="text-light bg-dark"> Dans cette opération, vous allez scrapper toutes les infos depuis le site de
+					l'<a href="superheroapi.com">API SuperHero</a>
+					et les placer dans la base de données Héro </span></p>
+				<p><span class="alert-danger font-weight-bold"> Attention, cette opération prend facilement 5 longues minutes </span></p>
+				<a href="{{ path('hero_api') }}">Mettre à jour la BDD</a>
+			</div>
+		</div>
+		<div class="row choix">
+			<div class="col-md-6">
+				<h2>Afficher tout les "gentils"</h2>
+				<a href="{{ path('hero_gentils') }}" class="bg-success">Afficher les héros gentils</a>
+			</div>
+			<div class="col-md-6">
+				<h2>Afficher tout les "mechants"</h2>
+				<a href="{{ path('hero_mechants') }}"class="bg-danger">Afficher les héros méchants</a>
+			</div>
+		</div>
+	</div>
 
-	<h2>afficher tout les "gentils"</h2>
-	<a href="{{ path('hero_gentils') }}">afficher les héros gentils</a>
 
-	<h2>afficher tout les "mechants"</h2>
-	<a href="{{ path('hero_mechants') }}">afficher les héros méchants</a>
+
 {% endblock %}
