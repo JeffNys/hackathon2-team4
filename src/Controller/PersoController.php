@@ -58,12 +58,7 @@ class PersoController extends AbstractController
         EntityManagerInterface $entityManager
     ) {
         $perso = $this->persoRepository->findOneBy([]);
-        $position = $this->tileRepository->findOneBy(
-            [
-                'coordX' => $perso->getCoordonneesX(),
-                'coordY' => $perso->getCoordonneesY()
-            ]
-        );
+
 
         if ($direction === 'N') {
             $perso->setCoordonneesY($perso->getCoordonneesY() - 1);
@@ -74,10 +69,22 @@ class PersoController extends AbstractController
         } elseif ($direction === 'W') {
             $perso->setCoordonneesX($perso->getCoordonneesX() - 1);
         }
+        $position = $this->tileRepository->findOneBy(
+            [
+                'coordX' => $perso->getCoordonneesX(),
+                'coordY' => $perso->getCoordonneesY()
+            ]
+        );
         if ($mapManager->tileExits($perso->getCoordonneesX(), $perso->getCoordonneesY()) === true) {
             $entityManager->flush();
             if ($mapManager->foundObjects($perso) === true) {
                 $this->addFlash('success', 'bravo tu as trouvé ' . $position->getObjet()->getNom());
+            }
+            if ($mapManager->foundArme($perso)) {
+                $this->addFlash('success', 'bravo tu as trouvé ' . $position->getArme()->getNom());
+            }
+            if ($mapManager->foundPiege($perso)) {
+                $this->addFlash('danger', 'bravo tu as trouvé ' . $position->getPiege()->getNom());
             }
         } else {
             $this->addFlash('danger', 'Tile doesn\'t exist, the perso can\'t move');

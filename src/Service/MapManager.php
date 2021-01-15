@@ -53,7 +53,7 @@ class MapManager
     {
         $tuiles = $this->tileRepository->findAll();
         array_shift($tuiles);
-        $allObjets = $this->ObjetsRepository->findAll();
+        $allObjets = $this->objectsRepository->findAll();
         $nombreObjets = 4;
         // donc on selectionne au hasard les objets qu'on veut
         $objetsCommandes = array_rand($allObjets, $nombreObjets);
@@ -61,8 +61,8 @@ class MapManager
         $tuileObjets = array_rand($tuiles, $nombreObjets);
         $i = 0;
         foreach ($tuileObjets as $tuileObjet) {
-            $tuileObjet->setHasObjet(true)->setObjet($objetsCommandes[$i]);
-            $this->entityManager->persist($tuileObjet);
+            $tuiles[$tuileObjet]->setHasObject(true)->setObjet($allObjets[$objetsCommandes[$i]]);
+            $this->entityManager->persist($tuiles[$tuileObjet]);
             $i++;
         }
         $this->entityManager->flush();
@@ -88,8 +88,8 @@ class MapManager
         // et maintenant, on les place
         $i = 0;
         foreach ($tuilePiegees as $tuilePiegee) {
-            $tuilePiegee->setHasPieges(true)->setPiege($piegesCommandes[$i]);
-            $this->entityManager->persist($tuilePiegee);
+            $tuiles[$tuilePiegee]->setHasPieges(true)->setPiege($allPieges[$piegesCommandes[$i]]);
+            $this->entityManager->persist($tuiles[$tuilePiegee]);
             $i++;
         }
         $this->entityManager->flush();
@@ -107,8 +107,8 @@ class MapManager
         $tuileArmees = array_rand($tuiles, $nombreArmes);
         $i = 0;
         foreach ($tuileArmees as $tuileArmee) {
-            $tuileArmee->setHasArmes(true)->setArme($armesCommandes[$i]);
-            $this->entityManager->persist($tuileArmee);
+            $tuiles[$tuileArmee]->setHasArmes(true)->setArme($allArmes[$armesCommandes[$i]]);
+            $this->entityManager->persist($tuiles[$tuileArmee]);
             $i++;
         }
         $this->entityManager->flush();

@@ -30,13 +30,40 @@
 				<div class="infos">
 					<h2>Information</h2>
 					<h3>
-						{{ perso.nom }}:</h3>
-					<p>
-						Position X:
-						{{ perso.coordonneesX }}</p>
-					<p>
-						Position Y:
-						{{ perso.coordonneesY }}</p>
+						{{ perso.nom }}
+					</h3>
+					<h3>Statistiques:</h3>
+					<div class="container-fluid stats">
+						<div class="row">
+						<div class="col-12">
+							Vie: {{ perso.vie }}
+						</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								Force: <br> {{ perso.forceMusculaire }}
+							</div>
+							<div class="col-6">
+								Vitesse: <br> {{ perso.vitesse }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								Puissance: <br> {{ perso.puissance }}
+							</div>
+							<div class="col-6">
+								Endurance: <br> {{ perso.endurance }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								Combat: <br> {{ perso.combat }}
+							</div>
+							<div class="col-6">
+								Intelligence: <br> {{ perso.intelligence }}
+							</div>
+						</div>
+					</div>
 				</div>
 
 

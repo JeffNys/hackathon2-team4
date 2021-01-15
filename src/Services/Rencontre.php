@@ -48,6 +48,7 @@ class Rencontre
         }
     }
 
+
     private function attaque(array $attaquant, array $defenseur): int
     {
         $vie = $defenseur['vie'];
