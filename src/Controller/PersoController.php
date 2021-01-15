@@ -6,6 +6,7 @@ use App\Entity\Perso;
 use App\Repository\PersoRepository;
 use App\Repository\TileRepository;
 use App\Service\MapManager;
+use App\Services\ApplyEffects;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,7 +56,8 @@ class PersoController extends AbstractController
     public function moveDirection(
         string $direction,
         MapManager $mapManager,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        ApplyEffects $effects
     ) {
         $perso = $this->persoRepository->findOneBy([]);
 
@@ -79,21 +81,22 @@ class PersoController extends AbstractController
             $entityManager->flush();
             if ($mapManager->foundObjects($perso) === true) {
                 $this->addFlash('success', 'bravo tu as trouvé ' . $position->getObjet()->getNom());
+                $potion = $position->getObjet();
+                $effects->applyPotion($perso, $potion);
             }
             if ($mapManager->foundArme($perso)) {
                 $this->addFlash('success', 'bravo tu as trouvé ' . $position->getArme()->getNom());
+                $arme = $position->getArme();
+
             }
             if ($mapManager->foundPiege($perso)) {
                 $this->addFlash('danger', 'bravo tu as trouvé ' . $position->getPiege()->getNom());
+                $piege = $position->getPiege();
+                $effects->applyPiege($perso, $piege);
             }
         } else {
             $this->addFlash('danger', 'Tile doesn\'t exist, the perso can\'t move');
         }
-        // $objet = $this->tileRepository->findBy([
-        //         'coordX' => $perso->getCoordonneesX(),
-        //         'coordY' => $perso->getCoordonneesY()]
-        //         );
-        // dd($objet);
         return $this->redirectToRoute('map');
     }
 
