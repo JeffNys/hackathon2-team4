@@ -41,7 +41,7 @@ class MapController extends AbstractController
 
         $perso = $persoRepository->findOneBy([]);
 
-        $mapManager->placeObjets();
+        //$mapManager->placeObjets();
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
