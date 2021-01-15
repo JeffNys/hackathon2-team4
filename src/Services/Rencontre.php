@@ -18,9 +18,11 @@ class Rencontre
         if ($this->whoStart($personnages) === $personnages[0]) {
             $attaquant1 = $personnages[0];
             $attaquant2 = $personnages[1];
+            $this->combat .= "Le joueur commence !</br>";
         } else {
             $attaquant1 = $personnages[1];
             $attaquant2 = $personnages[0];
+            $this->combat .= "L'ennemi commence !</br>";
         }
         // boucle d'attaque
         while ($attaquant1['vie'] > 0 && $attaquant2['vie'] > 0) {
@@ -48,14 +50,15 @@ class Rencontre
         }
     }
 
-
     private function attaque(array $attaquant, array $defenseur): int
     {
         $vie = $defenseur['vie'];
         // est ce qu'il y a esquive?
         $esquive = $this->esquive($attaquant['pointsAttaque'], $defenseur['pointsEsquive']);
+        $this->combat .= "L'attaque à échouée !</br>";
         if (!$esquive) {
-            $vie = $vie - $attaquant['pointAttaque'] * (100 - $defenseur['pointsDefense']) / 100;
+            $vie = $vie - $attaquant['pointsAttaque'] * (100 - $defenseur['pointsDefense']) / 100;
+            $this->combat .= "L'attaque à causée " . $vie . " dégats !</br>";
         }
         return $vie;
     }
