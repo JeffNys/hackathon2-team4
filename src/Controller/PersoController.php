@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\perso;
+use App\Entity\Perso;
 use App\Repository\PersoRepository;
 use App\Repository\TileRepository;
 use App\Service\MapManager;
