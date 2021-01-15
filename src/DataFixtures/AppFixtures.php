@@ -36,6 +36,13 @@ class AppFixtures extends Fixture
                 $tile->setCoordY($y);
                 $tile->setHasEnnemy(false);
                 $tile->setHasObject(false);
+                $tile->setHasPieges(false);
+                $tile->setHasArmes(false);
+                $tile->setHasTreasure(false);
+                $tile->setObjet(null);
+                $tile->setPiege(null);
+                $tile->setEnnemy(null);
+                $tile->setArme(null);
                 $manager->persist($tile);
             }
             $manager->flush();

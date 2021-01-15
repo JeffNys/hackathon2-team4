@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Pieges;
+use App\Entity\Ennemis;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,8 +53,6 @@ class Tile
      */
     private $hasEnnemy;
 
-    // manque les ennemy
-
     /**
      * @ORM\Column(type="boolean")
      */
@@ -73,6 +72,11 @@ class Tile
      * @ORM\ManyToOne(targetEntity=Pieges::class)
      */
     private $piege;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Ennemis::class)
+     */
+    private $ennemy;
 
 
     public function getId(): ?int
@@ -208,6 +212,18 @@ class Tile
     public function setPiege(?Pieges $piege): self
     {
         $this->piege = $piege;
+
+        return $this;
+    }
+
+    public function getEnnemy(): ?Ennemis
+    {
+        return $this->ennemy;
+    }
+
+    public function setEnnemy(?Ennemis $ennemy): self
+    {
+        $this->ennemy = $ennemy;
 
         return $this;
     }
