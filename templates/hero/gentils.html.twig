@@ -1,28 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MàJ API!{% endblock %}
+{% block title %}MàJ API!
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+{% endblock %}
 
 {% block body %}
-<div>
-    <h1 class="text-white bg-dark">Voici les gentils ✅</h1>
+	<div>
+		<h1 class="text-white bg-dark">Voici les gentils ✅</h1>
 
-{# futur code pour trier les gentils par la première lettre
-    {% for letter in alphabet %}
-    {{ letter }}
-    {% endfor %}
-#}
+		{# futur code pour trier les gentils par la première lettre
+		                {% for letter in alphabet %}
+		                {{ letter }}
+		                {% endfor %}
+		            #}
 
-<div class="container-fluid">
-    <div class="row index">
-        {% for gentil in gentils %}
-            <div class="col-lg-4 text-white">
-                <a class="text-white bg-dark" href="{{ path('hero_details', {'id': gentil.id }) }}"> {{ gentil.name }} - {{ gentil.publisher }}</a>
-            </div>
-        {% else %}
-            <p class="text-white bg-dark"><em>la table est vide</em></p>
-        {% endfor %}
-    </div>
-</div>
+	</div>
+	<main class="page service-page">
+		<section class="clean-block clean-services dark">
+			<div class="container">
+				<div class="block-heading">
+					<h2 class="text-info">Service Page</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+				</div>
+				<div class="row">
+					{% for gentil in gentils %}
+						<div class="col-md-6 col-lg-3">
+							<div class="card"><img class="card-img-top w-100 d-block" src="{{ gentil.image }}">
+								<div class="card-body">
+									<h4 class="card-title">{{ gentil.name }}</h4>
+									<p class="card-text">{{ gentil.race }}</p>
+								</div>
+								<div>
+									<button class="btn btn-outline-primary btn-sm" type="button">
+										<a href="{{ path('hero_details', {'id': gentil.id }) }}">Voir le hero</a>
+									</button>
+								</div>
+							</div>
+						</div>
+					{% else %}
+						<p class="text-white bg-dark">
+							<em>la table est vide</em>
+						</p>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	</main>
 
-</div>
 {% endblock %}

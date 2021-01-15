@@ -1,22 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MàJ API!{% endblock %}
+{% block title %}Liste
+{% endblock %}
 
 {% block body %}
-<div>
-    <h1 class="text-white bg-dark">Voici les mechants ✅</h1>
-
-    <div class="container-fluid">
-    <div class="row index">
-    {% for mechant in mechants %}
-        <div class="col-lg-4 text-white">
-            <a class="text-white bg-dark" href="{{ path('hero_details', {'id': mechant.id }) }}">
-                {{ mechant.name }} - {{ mechant.publisher }}
-            </a>
-        </div>
-    {% else %}
-        <p><em>la table est vide</em></p>
-    {% endfor %}
-    </div>
-</div>
-{% endblock %}
+	<div>
+		<main class="page service-page">
+			<section class="clean-block clean-services dark">
+				<div class="container">
+					<div class="text-white bg-dark">
+						<h2 class="text-info">Service Page</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+					</div>
+					<div class="row">
+						{% for mechant in mechants %}
+							<div class="col-md-6 col-lg-3">
+								<div class="card"><img class="card-img-top w-100 d-block" src="{{ mechant.image }}">
+									<div class="card-body">
+										<h4 class="card-title">{{ mechant.name }}</h4>
+										<p class="card-text">{{ mechant.race }}</p>
+									</div>
+									<div>
+										<button class="btn btn-outline-primary btn-sm" type="button">
+											<a href="{{ path('hero_details', {'id': mechant.id }) }}">Voir le mechant</a>
+										</button>
+									</div>
+								</div>
+							</div>
+						{% else %}
+							<p class="text-white bg-dark">
+								<em>la table est vide</em>
+							</p>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+		</main>
+	{% endblock %}
