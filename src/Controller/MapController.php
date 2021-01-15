@@ -6,6 +6,7 @@ use App\Entity\Tile;
 use App\Service\MapManager;
 use App\Repository\TileRepository;
 use App\Repository\PersoRepository;
+use App\Services\ApplyEffects;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,11 +17,15 @@ class MapController extends AbstractController
     /**
      * @Route("/start", name="start")
      */
-    public function start(PersoRepository $persoRepository, MapManager $mapManager, TileRepository $tileRepository)
+    public function start(PersoRepository $persoRepository,
+                          MapManager $mapManager,
+                          TileRepository $tileRepository,
+                          ApplyEffects $effects)
     {
         $tileRepository->removeAll();
         $perso = $persoRepository->findOneBy([]);
         $perso->setCoordonneesX(0)->setCoordonneesY(0);
+        $effects->reset($perso);
         $mapManager->placeObjets();
         $mapManager->placeArme();
         $mapManager->placePiege();
