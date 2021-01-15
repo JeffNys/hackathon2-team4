@@ -37,15 +37,8 @@ class AppFixtures extends Fixture
                 $tile->setHasEnnemy(false);
                 $tile->setHasObject(false);
                 $manager->persist($tile);
+                $manager->flush();
             }
         }
-
-        $perso = new Perso();
-        $perso->setCoordonneesX(0);
-        $perso->setCoordonneesX(0);
-        $perso->setNom('Yavuz');
-        $manager->persist($perso);
-
-        $manager->flush();
     }
 }

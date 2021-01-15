@@ -21,7 +21,7 @@ class MapController extends AbstractController
     {
         $perso = $persoRepository->findOneBy([]);
         $perso->setCoordonneesX(0)->setCoordonneesY(0);
-        $mapManager->getRandomIsland();
+        $mapManager->placeObjets();
 
         return $this->redirectToRoute('map');
     }
@@ -41,7 +41,7 @@ class MapController extends AbstractController
 
         $perso = $persoRepository->findOneBy([]);
 
-        $mapManager->placeObjet();
+        $mapManager->placeObjets();
 
         return $this->render('map/index.html.twig', [
             'map'  => $map ?? [],
