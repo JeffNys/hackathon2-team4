@@ -49,12 +49,12 @@ class Rencontre
         }
     }
 
-    pubic function attaque(array $attaquant)
+    public function attaque(array $attaquant)
     {
 
     }
 
-    pubic function fuite()
+    public function fuite()
     {
 
     }
