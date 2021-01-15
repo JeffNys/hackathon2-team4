@@ -1,46 +1,89 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ hero.name }}{% endblock %}
+{% block title %}
+	{{ hero.name }}
+{% endblock %}
 
 {% block body %}
-<h1 class="text-white bg-dark">{{ hero.name }}</h1>
 
+	<main class="page product-page">
+		<section class="clean-block clean-product dark">
+			<div class="container">
+				<div class="block-content">
+					<div class="product-info">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="gallery">
+									<div>
+										<a><img class="img-fluid d-block mx-auto" src="{{ hero.image }}"></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="info">
+									<h1>{{ hero.name }}</h1>
+									<div class="summary">
+										<h2 class="text-white bg-dark">Caractéristiques</h2>
+										<ul>
+											<li class="text-white bg-dark">genre:
+												{{ hero.gender }}
+											</li>
+											<li class="text-white bg-dark">race:
+												{{ hero.race }}
+											</li>
+											<li class="text-white bg-dark">taille:
+												{{ hero.heightCM }}</li>
+											<li class="text-white bg-dark">poids:
+												{{ hero.weight }}
+											</li>
+										</ul>
+									</div>
+									<div class="summary">
+										<h2 class="text-white bg-dark">Statistiques:
+										</h2>
+										<ul>
+											<li class="text-white bg-dark">intelligence:
+												{{ hero.intelligence }}
+											</li>
+											<li class="text-white bg-dark">force:
+												{{ hero.strength }}
+											</li>
+											<li class="text-white bg-dark">vitesse:
+												{{ hero.speed }}
+											</li>
+											<li class="text-white bg-dark">endurance:
+												{{ hero.durability }}
+											</li>
+											<li class="text-white bg-dark">puissance:
+												{{ hero.power }}
+											</li>
+											<li class="text-white bg-dark">combat:
+												{{ hero.combat }}
+											</li>
+										</ul>
+									</div>
+									<div>
+										<button class="btn btn-primary" type="button">
+											<a href="{{ path('hero_creation', {'id': hero.id }) }}">jouer avec
+												{{ hero.name }}!</a>
+										</button>
+									</div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6">
-            <h2 class="text-white bg-dark">Statistiques: </h2>
-            <ul>
-                <li class="text-white bg-dark">intelligence: {{ hero.intelligence }} </li>
-                <li class="text-white bg-dark">force: {{ hero.strength }} </li>
-                <li class="text-white bg-dark">vitesse: {{ hero.speed }} </li>
-                <li class="text-white bg-dark">endurance: {{ hero.durability }} </li>
-                <li class="text-white bg-dark">puissance: {{ hero.power }} </li>
-                <li class="text-white bg-dark">combat: {{ hero.combat }} </li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <h2 class="text-white bg-dark">Caractéristiques</h2>
-            <ul>
-                <li class="text-white bg-dark">genre: {{ hero.gender }} </li>
-                <li class="text-white bg-dark">race: {{ hero.race }} </li>
-                <li class="text-white bg-dark">taille: {{ hero.heightCM }}</li>
-                <li class="text-white bg-dark">poids: {{ hero.weight }}  </li>
-            </ul>
-        </div>
-    </div>
-</div>
-    <a class="btn btn-success btn-lg" href="{{ path('hero_creation', {'id': hero.id }) }}">jouer avec {{ hero.name }}!</a>
-    <div class="center">
-        <h2>
-            <span class="text-white bg-dark">Aperçu</span>
-        </h2>
-        <img src="{{ hero.image }}" alt="photo de {{ hero.name }} ">
-        <hr>
-    </div>
-
-
-<a class="text-white bg-dark" href="{{ path('hero_gentils') }}">retour vers les gentils</a>
-<br>
-<a class="text-white bg-dark" href="{{ path('hero_mechants') }}">retour vers les mechants</a>
-{% endblock %}
+									<div>
+										<button class="btn btn-secondary" type="button">
+											<a class="icon-basket" href="{{ path('hero_gentils') }}">retour vers les gentils</a>
+										</button>
+									</div>
+									<div>
+										<button class="btn btn-secondary" type="button">
+											<a class="icon-basket" href="{{ path('hero_mechants') }}">retour vers les mechants</a>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	{% endblock %}

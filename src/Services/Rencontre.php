@@ -25,6 +25,7 @@ class Rencontre
             $this->combat .= "L'ennemi commence !</br>";
         }
         // boucle d'attaque
+
         while ($attaquant1['vie'] > 0 && $attaquant2['vie'] > 0) {
             $this->attaque($attaquant1, $attaquant2);
             if ($attaquant2['vie'] > 0) {
@@ -43,6 +44,7 @@ class Rencontre
                 return $personnages[1];
             }
         }
+
         if ($personnages[0]['vitesse'] > $personnages[1]['vitesse']) {
             return $personnages[0];
         } else {

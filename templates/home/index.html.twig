@@ -4,11 +4,10 @@
 {% block body %}
 	<div class="container">
 		<h1 class="text-center text-white bg-dark">Accueil</h1>
-		<div class="row introduction">
-			<div class="col-sm-9">
+		<div class="row product-info">
+			<div class="col-sm-8 accueil">
 				<p>
-					Le principe est simple, choisissez votre super héro et cliquez sur le bouton "jouer avec ..."
-															                    voir plus bas ou dans le menu Héro
+					Le principe est simple, choisissez votre super héro et cliquez sur le bouton "jouer avec ..." voir plus bas ou dans le menu Héro
 				</p>
 				<p>ensuite vous vous déplacez et au gré de votre voyage vous pouvez rencontrer diverses choses
 				</p>
@@ -18,10 +17,14 @@
 					<li>
 						des armes qui augmenteront vos capacités (mais vous n'avez que deux mains, il va falloir choisir)</li>
 					<li>
-						des ennemis qu'il vous faudra combatre...</li>
+						des ennemis qu'il vous faudra combattre...</li>
 				</ol>
+				<div class="col-sm-12 text center">
+					<p>Bon courage !
+					</p>
+				</div>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-3 accueil">
 				<h3>Team4</h3>
 				<p>
 					David
@@ -40,24 +43,21 @@
 				</p>
 			</div>
 			<div class="col-sm-12 text-center">
-				<img class="compass" src="{{ asset('build/images/compass.png') }}" alt="compass">
+				<img class="compass" src="{{ asset('build/images/uncle_sam.gif') }}" alt="compass">
 			</div>
-			<div class="col-sm-12">
-				<p>Bon courage
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="container-fluid deep-sea">
-		<div class="row">
-			<div class="col-sm-12">
-				<h2 class="text-white bg-dark">Choisir parmi les gentils</h2>
-				<a class="btn btn-success btn-lg" href="{{ path('hero_gentils') }}">Les gentils</a>
-				<br>
-				<br>
-				<h2 class="text-white bg-dark">Choisir parmi les mechants</h2>
-				<a class="btn btn-success btn-lg" href="{{ path('hero_mechants') }}">Les méchants</a>
+			<div class="container-fluid text-center">
+				<div class="row">
+					<div class="col-sm-12">
+						<h2 class="text-white bg-dark">Choisir parmi les gentils</h2>
+						<a class="btn btn-success btn-lg" href="{{ path('hero_gentils') }}">Les gentils</a>
+						<br>
+						<br>
+						<h2 class="text-white bg-dark">Choisir parmi les mechants</h2>
+						<a class="btn btn-success btn-lg" href="{{ path('hero_mechants') }}">Les méchants</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
 {% endblock %}
