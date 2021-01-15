@@ -36,34 +36,66 @@
 					<div class="container-fluid stats">
 						<div class="row">
 							<div class="col-12">
-								Vie: {{ perso.vie }}
+								Vie:
+								{{ perso.vie }}
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-6">
-								Force: <br> {{ perso.forceMusculaire }}
+								Force:
+								<br>
+								{{ perso.forceMusculaire }}
 							</div>
 							<div class="col-6">
-								Vitesse: <br> {{ perso.vitesse }}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-6">
-								Puissance: <br> {{ perso.puissance }}
-							</div>
-							<div class="col-6">
-								Endurance: <br> {{ perso.endurance }}
+								Vitesse:
+								<br>
+								{{ perso.vitesse }}
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-6">
-								Combat: <br> {{ perso.combat }}
+								Puissance:
+								<br>
+								{{ perso.puissance }}
 							</div>
 							<div class="col-6">
-								Intelligence: <br> {{ perso.intelligence }}
+								Endurance:
+								<br>
+								{{ perso.endurance }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								Combat:
+								<br>
+								{{ perso.combat }}
+							</div>
+							<div class="col-6">
+								Intelligence:
+								<br>
+								{{ perso.intelligence }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								points d'Attaques:
+								{{ perso.pointsAttaque }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								points de Défense:
+								{{ perso.pointsDefense }}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								points d'Esquives:
+								{{ perso.pointsEsquive }}
 							</div>
 						</div>
 					</div>
+
 				</div>
 
 
@@ -90,9 +122,9 @@
 						</a>
 					</button>
 					{#<a class="west" href="{{ path('persoDirection', {'direction': 'W'}) }}"><img src="{{ asset('build/images/west.png') }}" alt="West" ></a>
-																				                    <a class="east" href="{{ path('persoDirection', {'direction': 'E'}) }}"><img src="{{ asset('build/images/east.png') }}" alt="East" ></a>
-																				                    <a class="south" href="{{ path('persoDirection', {'direction': 'S'}) }}"><img src="{{ asset('build/images/south.png') }}" alt="South" ></a>
-																				                #}
+																																																							                    <a class="east" href="{{ path('persoDirection', {'direction': 'E'}) }}"><img src="{{ asset('build/images/east.png') }}" alt="East" ></a>
+																																																							                    <a class="south" href="{{ path('persoDirection', {'direction': 'S'}) }}"><img src="{{ asset('build/images/south.png') }}" alt="South" ></a>
+																																																							                #}
 				</div>
 			</div>
 		</div>
