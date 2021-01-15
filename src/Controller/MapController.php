@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Tile;
 use App\Service\MapManager;
-use App\Repository\BoatRepository;
 use App\Repository\TileRepository;
 use App\Repository\PersoRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +21,8 @@ class MapController extends AbstractController
         $perso = $persoRepository->findOneBy([]);
         $perso->setCoordonneesX(0)->setCoordonneesY(0);
         $mapManager->placeObjets();
+        $mapManager->placeArme();
+        $mapManager->placePiege();
 
         return $this->redirectToRoute('map');
     }

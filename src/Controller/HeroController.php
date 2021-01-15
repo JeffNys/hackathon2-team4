@@ -75,8 +75,8 @@ class HeroController extends AbstractController
         int $id,
         HeroRepository $heroTable,
         PersoRepository $persoTable,
-        EntityManagerInterface $em): Response
-    {
+        EntityManagerInterface $em
+    ): Response {
         // première étape, récupérer le héro brut
         $hero = $heroTable->findOneBy(['id' => $id]);
         // ensuite, il faut "créer un objet" personnage
@@ -104,9 +104,10 @@ class HeroController extends AbstractController
             ->setPointsDefense($pointsDefense)
             ->setCoordonneesX(0)
             ->setCoordonneesY(0);
-        // afin d'éviter les déconvenu, hop, on vide la table des persos
+        // afin d'éviter les déconvenus, hop, on vide la table des persos
         // comme ça, il n'y a qu'un seul perso dans la table
         $toutLesPersos = $persoTable->findAll();
+        dd($toutLesPersos);
         foreach ($toutLesPersos as $persoAncien) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($persoAncien);
@@ -115,6 +116,6 @@ class HeroController extends AbstractController
         // ensuite on a plus qu'a le jeter dans la BDD
         $em->persist($perso);
         $em->flush();
-        return $this->redirectToRoute('map');
+        return $this->redirectToRoute('start');
     }
 }

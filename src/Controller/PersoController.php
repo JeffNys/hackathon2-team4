@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\perso;
-use App\Form\persoType;
 use App\Repository\PersoRepository;
 use App\Repository\TileRepository;
 use App\Service\MapManager;
@@ -22,9 +21,10 @@ class PersoController extends AbstractController
     private $persoRepository;
     private $tileRepository;
 
-    public function __construct(PersoRepository $persoRepository,
-                                TileRepository $tileRepository)
-    {
+    public function __construct(
+        PersoRepository $persoRepository,
+        TileRepository $tileRepository
+    ) {
         $this->persoRepository = $persoRepository;
         $this->tileRepository = $tileRepository;
     }
@@ -33,8 +33,12 @@ class PersoController extends AbstractController
      * Move the perso to coord x,y
      * @Route("/move/{x}/{y}", name="moveperso", requirements={"x"="\d+", "y"="\d+"}))
      */
-    public function moveperso(int $x, int $y, PersoRepository $persoRepository, EntityManagerInterface $em): Response
-    {
+    public function moveperso(
+        int $x,
+        int $y,
+        PersoRepository $persoRepository,
+        EntityManagerInterface $em
+    ): Response {
         $perso = $persoRepository->findOneBy([]);
         $perso->setCoordonneesX($x);
         $perso->setCoordonneesX($y);
@@ -48,8 +52,11 @@ class PersoController extends AbstractController
      * Move perso N,S,E,W
      * @Route("/move/{direction}", name="persoDirection", requirements={"direction"="N|S|E|W"})
      */
-    public function moveDirection(string $direction, MapManager $mapManager, EntityManagerInterface $entityManager)
-    {
+    public function moveDirection(
+        string $direction,
+        MapManager $mapManager,
+        EntityManagerInterface $entityManager
+    ) {
         $perso = $this->persoRepository->findOneBy([]);
         $position = $this->tileRepository->findOneBy(
             [
@@ -69,18 +76,17 @@ class PersoController extends AbstractController
         }
         if ($mapManager->tileExits($perso->getCoordonneesX(), $perso->getCoordonneesY()) === true) {
             $entityManager->flush();
-           if($mapManager->foundObjects($perso) === true) {
-               $this->addFlash('success', 'bravo tu as trouvé '. $position->getObjet()->getNom());
+            if ($mapManager->foundObjects($perso) === true) {
+                $this->addFlash('success', 'bravo tu as trouvé ' . $position->getObjet()->getNom());
             }
         } else {
             $this->addFlash('danger', 'Tile doesn\'t exist, the perso can\'t move');
         }
-        /*$objet = $this->tileRepository->findBy([
-                'coordX' => $perso->getCoordonneesX(),
-                'coordY' => $perso->getCoordonneesY()]
-        );
-dump($objet);
-        die();*/
+        // $objet = $this->tileRepository->findBy([
+        //         'coordX' => $perso->getCoordonneesX(),
+        //         'coordY' => $perso->getCoordonneesY()]
+        //         );
+        // dd($objet);
         return $this->redirectToRoute('map');
     }
 
@@ -94,54 +100,11 @@ dump($objet);
     }
 
     /**
-     * @Route("/new", name="perso_new", methods="GET|POST")
-     */
-    public function new(Request $request): Response
-    {
-        $perso = new Perso();
-        $form = $this->createForm(PersoType::class, $perso);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($perso);
-            $em->flush();
-
-            return $this->redirectToRoute('perso_index');
-        }
-
-        return $this->render('perso/new.html.twig', [
-            'perso' => $perso,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="perso_show", methods="GET")
      */
     public function show(Perso $perso): Response
     {
         return $this->render('perso/show.html.twig', ['perso' => $perso]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="perso_edit", methods="GET|POST")
-     */
-    public function edit(Request $request, Perso $perso): Response
-    {
-        $form = $this->createForm(PersoType::class, $perso);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('perso_index', ['id' => $perso->getId()]);
-        }
-
-        return $this->render('perso/edit.html.twig', [
-            'perso' => $perso,
-            'form' => $form->createView(),
-        ]);
     }
 
     /**

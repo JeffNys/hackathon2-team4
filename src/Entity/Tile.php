@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Pieges;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -42,14 +43,16 @@ class Tile
     private $hasObject;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Objects::class)
+     */
+    private $objet;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $hasEnnemy;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Objects::class)
-     */
-    private $objet;
+    // manque les ennemy
 
     /**
      * @ORM\Column(type="boolean")
