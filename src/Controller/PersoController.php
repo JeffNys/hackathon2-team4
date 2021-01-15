@@ -80,17 +80,18 @@ class PersoController extends AbstractController
         if ($mapManager->tileExits($perso->getCoordonneesX(), $perso->getCoordonneesY()) === true) {
             $entityManager->flush();
             if ($mapManager->foundObjects($perso) === true) {
-                $this->addFlash('success', 'bravo tu as trouvé ' . $position->getObjet()->getNom());
                 $potion = $position->getObjet();
+                $this->addFlash('success', 'Bravo tu as trouvé ' . $potion->getNom() .
+                '! +' . $potion->getPuissance() . ' en ' . $potion->getCaracteristique());
                 $effects->applyPotion($perso, $potion);
             }
             if ($mapManager->foundArme($perso)) {
-                $this->addFlash('success', 'bravo tu as trouvé ' . $position->getArme()->getNom());
+                $this->addFlash('success', 'Bravo tu as trouvé ' . $position->getArme()->getNom());
                 $arme = $position->getArme();
-
+                $effects->applyArme($perso, $arme);
             }
             if ($mapManager->foundPiege($perso)) {
-                $this->addFlash('danger', 'bravo tu as trouvé ' . $position->getPiege()->getNom());
+                $this->addFlash('danger', 'Oh non ! Tu as trouvé ' . $position->getPiege()->getNom());
                 $piege = $position->getPiege();
                 $effects->applyPiege($perso, $piege);
             }

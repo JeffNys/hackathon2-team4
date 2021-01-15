@@ -66,15 +66,15 @@ class ApplyEffects
     {
         switch ($perso) {
             case ($arme->getCaracteristique() == 'pointsAttaque');
-                $perso->setPointsAttaque($perso->getPointsAttaque() + $arme->getPuissance());
+                $perso->setPointsAttaque($perso->getForceMusculaire(), $perso->getVitesse(), $perso->getCombat());
                 $this->entityManager->flush();
                 break;
             case ($arme->getCaracteristique() == 'pointsDefense');
-                $perso->setPointsDefense($perso->getPointsDefense() + $arme->getPuissance());
+                $perso->setPointsDefense($perso->getEndurance(), $perso->getForceMusculaire(), $perso->getPuissance());
                 $this->entityManager->flush();
                 break;
             case ($arme->getCaracteristique() == 'pointsEsquive');
-                $perso->setPointsEsquive($perso->getPointsEsquive() + $arme->getPuissance());
+                $perso->setPointsEsquive($perso->getVitesse(), $perso->getIntelligence(), $perso->getCombat());
                 $this->entityManager->flush();
                 break;
         }
