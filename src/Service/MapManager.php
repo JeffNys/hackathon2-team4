@@ -51,25 +51,12 @@ class MapManager
         return false;
     }
 
-    public function getRandomIsland()
-    {
-        $tiles = $this->tileRepository->findBy(['type' => 'tuile']);
-        foreach($tiles as $tile){
-            $tile->setHasTreasure(false);
-        }
-
-        $treasureTile = $tiles[array_rand($tiles, 1)]->setHasTreasure(true);
-        $this->entityManager->flush();
-
-        return $treasureTile;
-    }
-
     public function placeObjets()
     {
         $tuiles = $this->tileRepository->findAll();
         $suppFirst = array_shift($tuiles);
 
-        $objetTuile = array_rand($tuiles, 71);
+        $objetTuile = array_rand($tuiles, 4);
         $allObjects = $this->objectsRepository->findAll();
 
         foreach($objetTuile as $objets){
@@ -78,13 +65,22 @@ class MapManager
             $this->entityManager->flush();
         }
 
-        /*$armesTuiles = array_rand($tuiles, 3);
-        foreach($armesTuiles as $armes) {
-            $tuiles[$armes]->
+        /*$allArmes = $this->armesRepository->findAll();
+        $armesTuiles = array_rand($tuiles, 4);
+        foreach($armesTuiles as $armes => $key) {
+            $arme = array_rand($allArmes, 1);
+            $tuiles[$key]->setHasArmes(true)->setArme($allArmes[$arme]);
+            $this->entityManager->flush();
+        }
+
+        $allPieges = $this->piegesRepository->findAll();
+        $piegesTuile = array_rand($tuiles, 4);
+
+        foreach($piegesTuile as $pieges){
+            $piege = array_rand($allPieges, 4);
+            $tuiles[$pieges]->setHasPieges(true)->setPiege($allPieges[$piege]);
+            $this->entityManager->flush();
         }*/
-
-
-        return $objetTuile;
     }
 
     public function foundObjects(Perso $perso)
@@ -93,6 +89,26 @@ class MapManager
             ['coordX' => $perso->getCoordonneesX(), 'coordY' => $perso->getCoordonneesY()]
         )){
                 return $tile->getHasObject();
+            }
+        return false;
+    }
+
+    public function foundPiege(Perso $perso)
+    {
+        if($tile = $this->tileRepository->findOneBy(
+            ['coordX' => $perso->getCoordonneesX(), 'coordY' => $perso->getCoordonneesY()]
+        )){
+                return $tile->getHasPieges();
+            }
+        return false;
+    }
+
+    public function foundArme(Perso $perso)
+    {
+        if($tile = $this->tileRepository->findOneBy(
+            ['coordX' => $perso->getCoordonneesX(), 'coordY' => $perso->getCoordonneesY()]
+        )){
+                return $tile->getHasArmes();
             }
         return false;
     }

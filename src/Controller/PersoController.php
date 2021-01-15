@@ -51,6 +51,12 @@ class PersoController extends AbstractController
     public function moveDirection(string $direction, MapManager $mapManager, EntityManagerInterface $entityManager)
     {
         $perso = $this->persoRepository->findOneBy([]);
+        $position = $this->tileRepository->findOneBy(
+            [
+                'coordX' => $perso->getCoordonneesX(),
+                'coordY' => $perso->getCoordonneesY()
+            ]
+        );
 
         if ($direction === 'N') {
             $perso->setCoordonneesY($perso->getCoordonneesY() - 1);
@@ -64,19 +70,21 @@ class PersoController extends AbstractController
         if ($mapManager->tileExits($perso->getCoordonneesX(), $perso->getCoordonneesY()) === true) {
             $this->addFlash('success', $perso->getNom() . ' move correctly');
             $entityManager->flush();
-            /*if($mapManager->foundObjects($perso) === true) {
+           if($mapManager->foundObjects($perso) === true) {
+               dump($position);
+               $this->addFlash('success', 'Tu as trouvé un objet: ');
+               die();
 
-//                $this->addFlash('success', 'Tu as trouvé l\'objet: ' .$objet['nom']);
-            }*/
+            }
         } else {
             $this->addFlash('danger', 'Tile doesn\'t exist, the perso can\'t move');
         }
-        $objet = $this->tileRepository->findBy([
+        /*$objet = $this->tileRepository->findBy([
                 'coordX' => $perso->getCoordonneesX(),
                 'coordY' => $perso->getCoordonneesY()]
         );
 dump($objet);
-        die();
+        die();*/
         return $this->redirectToRoute('map');
     }
 
