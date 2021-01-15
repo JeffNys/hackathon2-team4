@@ -51,6 +51,26 @@ class Tile
      */
     private $objet;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hasArmes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Armes::class)
+     */
+    private $arme;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $hasPieges;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Pieges::class)
+     */
+    private $piege;
+
 
     public function getId(): ?int
     {
@@ -137,6 +157,54 @@ class Tile
     public function setObjet(?Objects $objet): self
     {
         $this->objet = $objet;
+
+        return $this;
+    }
+
+    public function getHasArmes(): ?bool
+    {
+        return $this->hasArmes;
+    }
+
+    public function setHasArmes(bool $hasArmes): self
+    {
+        $this->hasArmes = $hasArmes;
+
+        return $this;
+    }
+
+    public function getArme(): ?Armes
+    {
+        return $this->arme;
+    }
+
+    public function setArme(?Armes $arme): self
+    {
+        $this->arme = $arme;
+
+        return $this;
+    }
+
+    public function getHasPieges(): ?bool
+    {
+        return $this->hasPieges;
+    }
+
+    public function setHasPieges(bool $hasPieges): self
+    {
+        $this->hasPieges = $hasPieges;
+
+        return $this;
+    }
+
+    public function getPiege(): ?Pieges
+    {
+        return $this->piege;
+    }
+
+    public function setPiege(?Pieges $piege): self
+    {
+        $this->piege = $piege;
 
         return $this;
     }

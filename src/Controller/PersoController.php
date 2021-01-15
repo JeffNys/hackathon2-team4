@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\perso;
 use App\Form\persoType;
 use App\Repository\PersoRepository;
+use App\Repository\TileRepository;
 use App\Service\MapManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,10 +20,13 @@ class PersoController extends AbstractController
 {
 
     private $persoRepository;
+    private $tileRepository;
 
-    public function __construct(PersoRepository $persoRepository)
+    public function __construct(PersoRepository $persoRepository,
+                                TileRepository $tileRepository)
     {
         $this->persoRepository = $persoRepository;
+        $this->tileRepository = $tileRepository;
     }
 
     /**
@@ -47,6 +51,12 @@ class PersoController extends AbstractController
     public function moveDirection(string $direction, MapManager $mapManager, EntityManagerInterface $entityManager)
     {
         $perso = $this->persoRepository->findOneBy([]);
+        $position = $this->tileRepository->findOneBy(
+            [
+                'coordX' => $perso->getCoordonneesX(),
+                'coordY' => $perso->getCoordonneesY()
+            ]
+        );
 
         if ($direction === 'N') {
             $perso->setCoordonneesY($perso->getCoordonneesY() - 1);
@@ -60,13 +70,21 @@ class PersoController extends AbstractController
         if ($mapManager->tileExits($perso->getCoordonneesX(), $perso->getCoordonneesY()) === true) {
             $this->addFlash('success', $perso->getNom() . ' move correctly');
             $entityManager->flush();
-            /*if($mapManager->foundObjects($perso) === true) {
-                $this->addFlash('success', 'You found an object');
-            }*/
+           if($mapManager->foundObjects($perso) === true) {
+               dump($position);
+               $this->addFlash('success', 'Tu as trouvé un objet: ');
+               die();
+
+            }
         } else {
             $this->addFlash('danger', 'Tile doesn\'t exist, the perso can\'t move');
         }
-
+        /*$objet = $this->tileRepository->findBy([
+                'coordX' => $perso->getCoordonneesX(),
+                'coordY' => $perso->getCoordonneesY()]
+        );
+dump($objet);
+        die();*/
         return $this->redirectToRoute('map');
     }
 
