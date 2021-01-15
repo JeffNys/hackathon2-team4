@@ -107,7 +107,6 @@ class HeroController extends AbstractController
         // afin d'éviter les déconvenus, hop, on vide la table des persos
         // comme ça, il n'y a qu'un seul perso dans la table
         $toutLesPersos = $persoTable->findAll();
-        dd($toutLesPersos);
         foreach ($toutLesPersos as $persoAncien) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($persoAncien);
