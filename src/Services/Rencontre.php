@@ -23,9 +23,9 @@ class Rencontre
         }
         // boucle d'attaque
         if ($attaquant1['vie'] > 0 && $attaquant2['vie'] > 0) {
-            for($i = 0; $i > 2; $i++) {
+            for ($i = 0; $i > 2; $i++) {
                 $this->attaque($attaquant1);
-                if($attaquant2['vie'] > 0){
+                if ($attaquant2['vie'] > 0) {
                     $this->attaque($attaquant2);
                 }
             }
@@ -35,8 +35,8 @@ class Rencontre
     public function whoStart(array $personnage)
     {
         if ($personnage[0]['vitesse'] === $personnage[1]['vitesse']) {
-            $rand = rand(1,2);
-            if($rand === 1) {
+            $rand = rand(1, 2);
+            if ($rand === 1) {
                 return $personnage[0];
             } else {
                 return $personnage[1];
@@ -44,19 +44,17 @@ class Rencontre
         }
         if ($personnage[0]['vitesse'] > $personnage[1]['vitesse']) {
             return $personnage[0];
-        }else{
+        } else {
             return $personnage[1];
         }
     }
 
-    pubic function attaque(array $attaquant)
+    public function attaque(array $attaquant)
     {
-
     }
 
-    pubic function fuite()
+    public function fuite()
     {
-
     }
 
     public function getJoueur()
@@ -78,6 +76,4 @@ class Rencontre
     {
         $this->enemy = $enemy;
     }
-
-
 }

@@ -180,3 +180,39 @@ html, body {
       color:rgb(0, 0, 0)
     }
   }
+  .product-info {
+    background-color: #343a40;
+    border-radius: 20px;
+  }
+  .btn {
+margin:5px;
+& a {
+  color:rgb(0, 0, 0)
+}
+  }
+.gallery {
+  margin:15px;
+}
+h1 {
+  text-align: center;
+  margin:15px;
+  background-color: grey;
+  border-radius: 10px;
+}
+.summary{
+  padding-top: 10px;
+}
+.img-fluid {
+  border-radius: 10px;
+}
+
+.accueil {
+
+  border-radius: 10px;
+}
+.accueil {
+  text-align: center;
+  margin:15px;
+  background-color: grey;
+  border-radius: 10px;
+}

@@ -13,42 +13,39 @@
 		<h1 class="text-white bg-dark">Voici les gentils ✅</h1>
 
 		{# futur code pour trier les gentils par la première lettre
-		                {% for letter in alphabet %}
-		                {{ letter }}
-		                {% endfor %}
-		            #}
+						                {% for letter in alphabet %}
+						                {{ letter }}
+						                {% endfor %}
+						            #}
 
 	</div>
 	<main class="page service-page">
 		<section class="clean-block clean-services dark">
 			<div class="container">
 				<div class="block-heading">
-					<h2 class="text-info">Service Page</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
-				</div>
-				<div class="row">
-					{% for gentil in gentils %}
-						<div class="col-md-6 col-lg-3">
-							<div class="card"><img class="card-img-top w-100 d-block" src="{{ gentil.image }}">
-								<div class="card-body">
-									<h4 class="card-title">{{ gentil.name }}</h4>
-									<p class="card-text">{{ gentil.race }}</p>
-								</div>
-								<div>
-									<button class="btn btn-outline-primary btn-sm" type="button">
-										<a href="{{ path('hero_details', {'id': gentil.id }) }}">Voir le hero</a>
-									</button>
+					<div class="row">
+						{% for gentil in gentils %}
+							<div class="col-md-6 col-lg-3">
+								<div class="card"><img class="card-img-top w-100 d-block" src="{{ gentil.image }}">
+									<div class="card-body">
+										<h4 class="card-title">{{ gentil.name }}</h4>
+										<p class="card-text">{{ gentil.race }}</p>
+									</div>
+									<div>
+										<button class="btn btn-outline-primary btn-sm" type="button">
+											<a href="{{ path('hero_details', {'id': gentil.id }) }}">Voir le heros</a>
+										</button>
+									</div>
 								</div>
 							</div>
-						</div>
-					{% else %}
-						<p class="text-white bg-dark">
-							<em>la table est vide</em>
-						</p>
-					{% endfor %}
+						{% else %}
+							<p class="text-white bg-dark">
+								<em>la table est vide</em>
+							</p>
+						{% endfor %}
+					</div>
 				</div>
-			</div>
-		</section>
-	</main>
+			</section>
+		</main>
 
-{% endblock %}
+	{% endblock %}
