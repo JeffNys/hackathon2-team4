@@ -211,9 +211,13 @@ class Perso
         return $this->pointsAttaque;
     }
 
-    public function setPointsAttaque(int $pointsAttaque): self
+    public function setPointsAttaque(int $force, int $vitesse, int $combat): self
     {
-        $this->pointsAttaque = $pointsAttaque;
+        $force = $this->getForceMusculaire();
+        $vitesse = $this->getVitesse();
+        $combat = $this->getCombat();
+
+        $this->pointsAttaque = ($force + $vitesse + $combat)/3;
 
         return $this;
     }
@@ -223,9 +227,13 @@ class Perso
         return $this->pointsEsquive;
     }
 
-    public function setPointsEsquive(int $pointsEsquive): self
+    public function setPointsEsquive(int $vitesse, int $intellect, int $combat): self
     {
-        $this->pointsEsquive = $pointsEsquive;
+        $vitesse = $this->getVitesse();
+        $intellect = $this->getIntelligence();
+        $combat = $this->getCombat();
+
+        $this->pointsEsquive = ($vitesse + $intellect + $combat)/3;
 
         return $this;
     }
@@ -235,9 +243,13 @@ class Perso
         return $this->pointsDefense;
     }
 
-    public function setPointsDefense(int $pointsDefense): self
+    public function setPointsDefense(int $endurance, int $force, int $puissance): self
     {
-        $this->pointsDefense = $pointsDefense;
+        $endurance = $this->getEndurance();
+        $force = $this->getForceMusculaire();
+        $puissance = $this->getPuissance();
+
+        $this->pointsDefense = ($endurance + $force + $puissance)/3;
 
         return $this;
     }
