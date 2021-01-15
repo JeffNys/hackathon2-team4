@@ -56,31 +56,41 @@ class MapManager
         $tuiles = $this->tileRepository->findAll();
         $suppFirst = array_shift($tuiles);
 
-        $objetTuile = array_rand($tuiles, 4);
         $allObjects = $this->objectsRepository->findAll();
 
-        foreach($objetTuile as $objets){
-            $object = array_rand($allObjects, 1);
-            $tuiles[$objets]->setHasObject(true)->setObjet($allObjects[$object]);
+        for ($i = 0; $i < 4; $i++) {
+            $objetTuile = array_rand($tuiles, 1);
+            $tuiles[$objetTuile]->setHasObject(true)->setObjet($allObjects[$i]);
             $this->entityManager->flush();
         }
+    }
 
-        /*$allArmes = $this->armesRepository->findAll();
-        $armesTuiles = array_rand($tuiles, 4);
-        foreach($armesTuiles as $armes => $key) {
-            $arme = array_rand($allArmes, 1);
-            $tuiles[$key]->setHasArmes(true)->setArme($allArmes[$arme]);
-            $this->entityManager->flush();
-        }
+    public function placePiege()
+    {
+        $tuiles = $this->tileRepository->findAll();
+        $suppFirst = array_shift($tuiles);
 
         $allPieges = $this->piegesRepository->findAll();
-        $piegesTuile = array_rand($tuiles, 4);
 
-        foreach($piegesTuile as $pieges){
-            $piege = array_rand($allPieges, 4);
-            $tuiles[$pieges]->setHasPieges(true)->setPiege($allPieges[$piege]);
+        for ($i = 0; $i < 4; $i++) {
+            $piegeTuile = array_rand($tuiles, 1);
+            $tuiles[$piegeTuile]->setHasPieges(true)->setPiege($allPieges[$i]);
             $this->entityManager->flush();
-        }*/
+        }
+    }
+
+    public function placeArme()
+    {
+        $tuiles = $this->tileRepository->findAll();
+        $suppFirst = array_shift($tuiles);
+
+        $allArmes = $this->armesRepository->findAll();
+
+        for ($i = 0; $i < 4; $i++) {
+            $armeTuile = array_rand($tuiles, 1);
+            $tuiles[$armeTuile]->setHasArmes(true)->setArme($allArmes[$i]);
+            $this->entityManager->flush();
+        }
     }
 
     public function foundObjects(Perso $perso)

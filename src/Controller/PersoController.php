@@ -68,13 +68,9 @@ class PersoController extends AbstractController
             $perso->setCoordonneesX($perso->getCoordonneesX() - 1);
         }
         if ($mapManager->tileExits($perso->getCoordonneesX(), $perso->getCoordonneesY()) === true) {
-            $this->addFlash('success', $perso->getNom() . ' move correctly');
             $entityManager->flush();
            if($mapManager->foundObjects($perso) === true) {
-               dump($position);
-               $this->addFlash('success', 'Tu as trouvé un objet: ');
-               die();
-
+               $this->addFlash('success', 'bravo tu as trouvé '. $position->getObjet()->getNom());
             }
         } else {
             $this->addFlash('danger', 'Tile doesn\'t exist, the perso can\'t move');
