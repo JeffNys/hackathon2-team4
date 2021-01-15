@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\perso;
 use App\Form\persoType;
 use App\Repository\PersoRepository;
+use App\Repository\TileRepository;
 use App\Service\MapManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,10 +20,13 @@ class PersoController extends AbstractController
 {
 
     private $persoRepository;
+    private $tileRepository;
 
-    public function __construct(PersoRepository $persoRepository)
+    public function __construct(PersoRepository $persoRepository,
+                                TileRepository $tileRepository)
     {
         $this->persoRepository = $persoRepository;
+        $this->tileRepository = $tileRepository;
     }
 
     /**
@@ -61,12 +65,18 @@ class PersoController extends AbstractController
             $this->addFlash('success', $perso->getNom() . ' move correctly');
             $entityManager->flush();
             /*if($mapManager->foundObjects($perso) === true) {
-                $this->addFlash('success', 'You found an object');
+
+//                $this->addFlash('success', 'Tu as trouvé l\'objet: ' .$objet['nom']);
             }*/
         } else {
             $this->addFlash('danger', 'Tile doesn\'t exist, the perso can\'t move');
         }
-
+        $objet = $this->tileRepository->findBy([
+                'coordX' => $perso->getCoordonneesX(),
+                'coordY' => $perso->getCoordonneesY()]
+        );
+dump($objet);
+        die();
         return $this->redirectToRoute('map');
     }
 
