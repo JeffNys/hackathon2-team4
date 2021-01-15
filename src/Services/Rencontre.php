@@ -8,55 +8,79 @@ class Rencontre
 {
     private $joueur;
     private $enemy;
+    private $combat;
 
-    public function combat(array $personnage)
+    public function combat(array $personnages)
     {
-        $this->joueur = $personnage[0];
-        $this->enemy = $personnage[1];
+        $this->joueur = $personnages[0];
+        $this->enemy = $personnages[1];
         // qui commence
-        if ($this->whoStart($personnage) === $personnage[0]) {
-            $attaquant1 = $personnage[0];
-            $attaquant2 = $personnage[1];
+        if ($this->whoStart($personnages) === $personnages[0]) {
+            $attaquant1 = $personnages[0];
+            $attaquant2 = $personnages[1];
         } else {
-            $attaquant1 = $personnage[1];
-            $attaquant2 = $personnage[0];
+            $attaquant1 = $personnages[1];
+            $attaquant2 = $personnages[0];
         }
         // boucle d'attaque
-        if ($attaquant1['vie'] > 0 && $attaquant2['vie'] > 0) {
-            for($i = 0; $i > 2; $i++) {
-                $this->attaque($attaquant1);
-                if($attaquant2['vie'] > 0){
-                    $this->attaque($attaquant2);
-                }
+        while ($attaquant1['vie'] > 0 && $attaquant2['vie'] > 0) {
+            $this->attaque($attaquant1, $attaquant2);
+            if ($attaquant2['vie'] > 0) {
+                $this->attaque($attaquant2, $attaquant1);
             }
         }
     }
 
-    public function whoStart(array $personnage)
+    public function whoStart(array $personnages): array
     {
-        if ($personnage[0]['vitesse'] === $personnage[1]['vitesse']) {
-            $rand = rand(1,2);
-            if($rand === 1) {
-                return $personnage[0];
+        if ($personnages[0]['vitesse'] === $personnages[1]['vitesse']) {
+            $rand = rand(1, 2);
+            if ($rand === 1) {
+                return $personnages[0];
             } else {
-                return $personnage[1];
+                return $personnages[1];
             }
         }
-        if ($personnage[0]['vitesse'] > $personnage[1]['vitesse']) {
-            return $personnage[0];
-        }else{
-            return $personnage[1];
+        if ($personnages[0]['vitesse'] > $personnages[1]['vitesse']) {
+            return $personnages[0];
+        } else {
+            return $personnages[1];
         }
     }
 
-    pubic function attaque(array $attaquant)
+    private function attaque(array $attaquant, array $defenseur): int
     {
-
+        $vie = $defenseur['vie'];
+        // est ce qu'il y a esquive?
+        $esquive = $this->esquive($attaquant['pointsAttaque'], $defenseur['pointsEsquive']);
+        if (!$esquive) {
+            $vie = $vie - $attaquant['pointAttaque'] * (100 - $defenseur['pointsDefense']) / 100;
+        }
+        return $vie;
     }
 
-    pubic function fuite()
+    private function esquive(int $pointsAttaque, int $pointEsquive): bool
     {
-
+        $esquive = false;
+        $comparatif = $pointEsquive - $pointsAttaque;
+        if ($comparatif > 30) {
+            $test = 70;
+        } elseif ($comparatif > 20) {
+            $test = 50;
+        } elseif ($comparatif > 10) {
+            $test = 30;
+        } elseif ($comparatif > 0) {
+            $test = 20;
+        } elseif ($comparatif > -10) {
+            $test = 10;
+        } elseif ($comparatif > -20) {
+            $test = 20;
+        }
+        $chanceEsquive = rand(1, 100);
+        if ($chanceEsquive < $test) {
+            $esquive = true;
+        }
+        return $esquive;
     }
 
     public function getJoueur()
@@ -78,6 +102,4 @@ class Rencontre
     {
         $this->enemy = $enemy;
     }
-
-
 }
