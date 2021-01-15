@@ -1,21 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HeroController!{% endblock %}
+{% block title %}Hello HeroController!
+{% endblock %}
 
 {% block body %}
-<h1>Gestion de la base Héro</h1>
 
-<h2>Mettre à jour la base de donnée depuis l'API</h2>
 
-<p>dans cette opération, vous allez scrapper toutes les infos depuis le site superheroapi.com
-et les placer dans la base de données Héro</p>
-<p>attention, cette opération prend facilement 5 longues minutes</p>
-<a href="{{ path('hero_api') }}">mettre à jour la BDD</a>
-<hr>
+	<h1>Gestion de la base Héro</h1>
 
-<h2>afficher tout les "gentils"</h2>
-<a href="{{ path('hero_gentils') }}">afficher les héros gentils</a>
+	<h2>Mettre à jour la base de donnée depuis l'API</h2>
 
-<h2>afficher tout les "mechants"</h2>
-<a href="{{ path('hero_mechants') }}">afficher les héros méchants</a>
+	<p>dans cette opération, vous allez scrapper toutes les infos depuis le site superheroapi.com
+		et les placer dans la base de données Héro</p>
+	<p>attention, cette opération prend facilement 5 longues minutes</p>
+	<a href="{{ path('hero_api') }}">mettre à jour la BDD</a>
+	<hr>
+
+	<h2>afficher tout les "gentils"</h2>
+	<a href="{{ path('hero_gentils') }}">afficher les héros gentils</a>
+
+	<h2>afficher tout les "mechants"</h2>
+	<a href="{{ path('hero_mechants') }}">afficher les héros méchants</a>
 {% endblock %}
