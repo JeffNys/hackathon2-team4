@@ -37,8 +37,8 @@ class AppFixtures extends Fixture
                 $tile->setHasEnnemy(false);
                 $tile->setHasObject(false);
                 $manager->persist($tile);
-                $manager->flush();
             }
+            $manager->flush();
         }
     }
 }

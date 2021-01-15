@@ -4,10 +4,8 @@
 namespace App\Service;
 
 
-use App\Entity\Boat;
 use App\Entity\Perso;
 use App\Repository\ArmesRepository;
-use App\Repository\BoatRepository;
 use App\Repository\ObjectsRepository;
 use App\Repository\PiegesRepository;
 use App\Repository\TileRepository;
@@ -21,12 +19,13 @@ class MapManager
     private $piegesRepository;
     private $objectsRepository;
 
-    public function __construct(TileRepository $tileRepository,
-                                EntityManagerInterface $entityManager,
-                                ArmesRepository $armesRepository,
-                                PiegesRepository $piegesRepository,
-                                ObjectsRepository $objectsRepository)
-    {
+    public function __construct(
+        TileRepository $tileRepository,
+        EntityManagerInterface $entityManager,
+        ArmesRepository $armesRepository,
+        PiegesRepository $piegesRepository,
+        ObjectsRepository $objectsRepository
+    ) {
         $this->tileRepository = $tileRepository;
         $this->entityManager = $entityManager;
         $this->armesRepository = $armesRepository;
@@ -40,12 +39,11 @@ class MapManager
         $coordY = [];
 
         $tiles = $this->tileRepository->findAll();
-        foreach( $tiles as $tile)
-        {
+        foreach ($tiles as $tile) {
             $coordX[] = $tile->getCoordX();
             $coordY[] = $tile->getCoordY();
         }
-        if(in_array($x, $coordX) && in_array($y, $coordY)) {
+        if (in_array($x, $coordX) && in_array($y, $coordY)) {
             return true;
         }
         return false;
@@ -54,80 +52,103 @@ class MapManager
     public function placeObjets()
     {
         $tuiles = $this->tileRepository->findAll();
-        $suppFirst = array_shift($tuiles);
-
-        $allObjects = $this->objectsRepository->findAll();
-
-        for ($i = 0; $i < 4; $i++) {
-            $objetTuile = array_rand($tuiles, 1);
-            $tuiles[$objetTuile]->setHasObject(true)->setObjet($allObjects[$i]);
-            $this->entityManager->flush();
+        array_shift($tuiles);
+        $allObjets = $this->ObjetsRepository->findAll();
+        $nombreObjets = 4;
+        // donc on selectionne au hasard les objets qu'on veut
+        $objetsCommandes = array_rand($allObjets, $nombreObjets);
+        // et les tuiles sur lesquels on veut les placer
+        $tuileObjets = array_rand($tuiles, $nombreObjets);
+        $i = 0;
+        foreach ($tuileObjets as $tuileObjet) {
+            $tuileObjet->setHasObjet(true)->setObjet($objetsCommandes[$i]);
+            $this->entityManager->persist($tuileObjet);
+            $i++;
         }
+        $this->entityManager->flush();
     }
 
     public function placePiege()
     {
+        // on prend toutes les tuiles
         $tuiles = $this->tileRepository->findAll();
-        $suppFirst = array_shift($tuiles);
+        // on supprime la première :-)
+        array_shift($tuiles);
 
+        // on selectionne tout les pièges existant
         $allPieges = $this->piegesRepository->findAll();
 
-        for ($i = 0; $i < 4; $i++) {
-            $piegeTuile = array_rand($tuiles, 1);
-            $tuiles[$piegeTuile]->setHasPieges(true)->setPiege($allPieges[$i]);
-            $this->entityManager->flush();
+        $nombre2Pieges = 4;
+
+        // donc on selectionne au hasard les pièges qu'on veut
+        $piegesCommandes = array_rand($allPieges, $nombre2Pieges);
+        // et les tuiles sur lesquels on veut les placer
+        $tuilePiegees = array_rand($tuiles, $nombre2Pieges);
+
+        // et maintenant, on les place
+        $i = 0;
+        foreach ($tuilePiegees as $tuilePiegee) {
+            $tuilePiegee->setHasPieges(true)->setPiege($piegesCommandes[$i]);
+            $this->entityManager->persist($tuilePiegee);
+            $i++;
         }
+        $this->entityManager->flush();
     }
 
     public function placeArme()
     {
         $tuiles = $this->tileRepository->findAll();
-        $suppFirst = array_shift($tuiles);
-
+        array_shift($tuiles);
         $allArmes = $this->armesRepository->findAll();
-
-        for ($i = 0; $i < 4; $i++) {
-            $armeTuile = array_rand($tuiles, 1);
-            $tuiles[$armeTuile]->setHasArmes(true)->setArme($allArmes[$i]);
-            $this->entityManager->flush();
+        $nombreArmes = 4;
+        // donc on selectionne au hasard les armes qu'on veut
+        $armesCommandes = array_rand($allArmes, $nombreArmes);
+        // et les tuiles sur lesquels on veut les placer
+        $tuileArmees = array_rand($tuiles, $nombreArmes);
+        $i = 0;
+        foreach ($tuileArmees as $tuileArmee) {
+            $tuileArmee->setHasArmes(true)->setArme($armesCommandes[$i]);
+            $this->entityManager->persist($tuileArmee);
+            $i++;
         }
+        $this->entityManager->flush();
     }
 
     public function foundObjects(Perso $perso)
     {
-        if($tile = $this->tileRepository->findOneBy(
+        if ($tile = $this->tileRepository->findOneBy(
             ['coordX' => $perso->getCoordonneesX(), 'coordY' => $perso->getCoordonneesY()]
-        )){
-                return $tile->getHasObject();
-            }
+        )) {
+            return $tile->getHasObject();
+        }
         return false;
     }
 
     public function foundPiege(Perso $perso)
     {
-        if($tile = $this->tileRepository->findOneBy(
+        if ($tile = $this->tileRepository->findOneBy(
             ['coordX' => $perso->getCoordonneesX(), 'coordY' => $perso->getCoordonneesY()]
-        )){
-                return $tile->getHasPieges();
-            }
+        )) {
+            return $tile->getHasPieges();
+        }
         return false;
     }
 
     public function foundArme(Perso $perso)
     {
-        if($tile = $this->tileRepository->findOneBy(
+        if ($tile = $this->tileRepository->findOneBy(
             ['coordX' => $perso->getCoordonneesX(), 'coordY' => $perso->getCoordonneesY()]
-        )){
-                return $tile->getHasArmes();
-            }
+        )) {
+            return $tile->getHasArmes();
+        }
         return false;
     }
 
-     public function fightEnnemy(Perso $perso)
+    public function fightEnnemy(Perso $perso)
     {
-        if($tile = $this->tileRepository->findOneBy(
-            ['coordX' => $perso->getCoordX(), 'coordY' => $perso->getCoordY()]
-        )){
+        if ($tile = $this->tileRepository->findOneBy(
+            ['coordX' => $perso->getCoordonneesX(), 'coordY' => $perso->getCoordonneesY()]
+        )) {
             return $tile->getHasEnnemy();
         }
         return false;
